@@ -6,7 +6,12 @@ import java.util.List;
 
 public class DadosFuncionarios {
     private static final List<Funcionario> funcionarios = new ArrayList<>();
+
+    public static List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
     
+
     /**
      * Cadastra um novo funcionario.
      * @param funcionario Funcionario a ser cadastrado

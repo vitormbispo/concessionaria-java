@@ -34,4 +34,8 @@ public class Venda {
         return String.format("Cliente: %s | Veículo: %s | Funcionário:%s | Valor: R$ %.2f | Data: %s | ",
                  cliente.getNome(), veiculo.nomeComposto(), funcionario.getNome(), valor, data.toString());
     }
+    
+    public String nomeResumido() {
+        return String.format("%s | %s", cliente.getNome(),veiculo.getNome());
+    }
 }

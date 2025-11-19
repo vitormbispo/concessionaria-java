@@ -8,7 +8,11 @@ import java.util.ArrayList;
  */
 public class DadosClientes {
     private static ArrayList<Cliente> clientes = new ArrayList<>();
-    
+
+    public static ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+        
     /**
      * Cadastra um novo cliente.
      * @param cliente Cliente a ser cadastrado

@@ -7,15 +7,16 @@ public class Cliente {
     private String nome;
     private String telefone;
     private String email;
-    private String rg;
     private String cpf;
+    private String rg;
 
-    public Cliente(String nome, String telefone, String email, String rg, String cpf) {
+    public Cliente(String nome, String telefone, String email, String cpf,String rg) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
-        this.rg = rg;
         this.cpf = cpf;
+        this.rg = rg;
+        
     }
     
     public Cliente clone() {
@@ -36,8 +37,7 @@ public class Cliente {
     
     @Override
     public String toString() {
-        return String.format("Nome: %s | Telefone: %s | E-mail: %s | CPF: %s | RG: %s |",
-                nome,telefone,email,cpf,rg);
+        return this.nome;
     }
     
     @Override

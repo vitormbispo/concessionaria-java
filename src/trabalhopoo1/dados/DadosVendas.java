@@ -11,6 +11,10 @@ import java.util.List;
 public class DadosVendas {
     private static final List<Venda> vendas = new ArrayList<>();
 
+    public static List<Venda> getVendas() {
+        return vendas;
+    }
+    
     /**
      * Cadastra uma nova venda
      * @param venda Venda a cadastrar
@@ -184,4 +188,6 @@ public class DadosVendas {
                 venda.setVeiculo(novo);
         }
     }
+    
+    
 }

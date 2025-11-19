@@ -6,6 +6,10 @@ import java.util.List;
 
 public class DadosVeiculos {
     private static final List<Veiculo> veiculos = new ArrayList<>();
+
+    public static List<Veiculo> getVeiculos() {
+        return veiculos;
+    }
     
     /**
      * Cadastra um novo veículo
