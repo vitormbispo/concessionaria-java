@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import trabalhopoo1.dados.DadosClientes;
 import trabalhopoo1.entidades.Cliente;
-import trabalhopoo1.gui.beans.ListaConsulta;
 import trabalhopoo1.gui.beans.ListaRemocao;
 import trabalhopoo1.gui.views.ViewPrincipal;
 
@@ -93,7 +92,7 @@ public class RemocaoClientesController {
         
         lista.getSelecionados().forEach((indice) -> {
             Cliente cliente = clientesEncontrados.get(indice);
-            viewPrincipal.getArvore().removerCliente(cliente);
+            viewPrincipal.getArvore().getNoClientes().removerObjeto(cliente);
             DadosClientes.remover(cliente);
             
         });

@@ -27,7 +27,7 @@ public class ViewPrincipal extends JFrame{
         
         painelArvore = new JPanel();
         painelArvore.setLayout(new GridLayout());
-        arvore = new Arvore();
+        arvore = new Arvore(this);
         painelArvore.add(arvore);
         
         painelCentro = new JPanel(new CardLayout());

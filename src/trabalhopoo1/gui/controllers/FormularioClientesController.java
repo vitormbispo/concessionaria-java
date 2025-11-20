@@ -16,7 +16,7 @@ public class FormularioClientesController {
         Cliente cliente = new Cliente(nome,telefone,email,cpf,rg);
         
         DadosClientes.cadastrar(cliente);
-        viewPrincipal.getArvore().adicionarCliente(cliente);
+        viewPrincipal.getArvore().getNoClientes().adicionarObjeto(cliente);
         viewPrincipal.mudarPainelCentral("MenuPrincipal");
         
     }
