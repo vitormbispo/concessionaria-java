@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package trabalhopoo1.gui.views;
 
 import javax.swing.JLabel;
 import trabalhopoo1.entidades.Cliente;
 import trabalhopoo1.gui.controllers.FormularioClientesController;
 
-/**
- *
- * @author vitorbispo
- */
 public class FormularioClientes extends javax.swing.JPanel {
     
     private FormularioClientesController controller;
@@ -260,6 +252,9 @@ public class FormularioClientes extends javax.swing.JPanel {
         this.reiniciar();
     }//GEN-LAST:event_cancelPerformed
     
+    /**
+     * Reinicia os elementos da tela
+     */
     public void reiniciar() {
         this.removeAll();
         this.initComponents();

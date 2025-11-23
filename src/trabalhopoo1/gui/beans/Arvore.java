@@ -9,6 +9,11 @@ import javax.swing.tree.DefaultTreeModel;
 import trabalhopoo1.entidades.Cliente;
 import trabalhopoo1.gui.views.ViewPrincipal;
 
+/**
+ * Arvore que exibe registros de clientes, funcionários, veículos e vendas da concessionária. <br>
+ * Suporta menus de contexto com o botão direito do mouse.
+ * @author vitorbispo
+ */
 public class Arvore extends JTree {
     private final DefaultTreeModel modelo;
     private final DefaultMutableTreeNode raiz;
@@ -25,7 +30,7 @@ public class Arvore extends JTree {
         this.modelo = (DefaultTreeModel) this.getModel();
         this.raiz = (DefaultMutableTreeNode) this.modelo.getRoot();
         
-        noClientes = new NoClasse<Cliente>("Clientes",modelo,raiz);
+        noClientes = new NoClasse<>("Clientes",modelo,raiz);
         noFuncionarios = new DefaultMutableTreeNode("Funcionários");
         noVeiculos = new DefaultMutableTreeNode("Veículos");
         noVendas = new DefaultMutableTreeNode("Vendas");
@@ -39,6 +44,9 @@ public class Arvore extends JTree {
         configurarAcoes();
     }
     
+    /**
+     * Configura os eventos do mouse e menus de contexto.
+     */
     public final void configurarAcoes() {
         Arvore arvore = this;
         
@@ -53,13 +61,14 @@ public class Arvore extends JTree {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(SwingUtilities.isRightMouseButton(e)) {
-                    int selecionado = arvore.getClosestRowForLocation(e.getX(), e.getY());
-                    if(selecionado == 0)
+                    int selecionado = arvore.getClosestRowForLocation(e.getX(), e.getY()); // Seleciona a linha mais próxima do mouse
+                    if(selecionado == 0) // Ignora raíz
                         return;
                     
-                    arvore.setSelectionRow(selecionado);
+                    arvore.setSelectionRow(selecionado); 
                     Object objeto = arvore.getSelectionPath().getLastPathComponent();
                     
+                    // Mostra menus diferentes se o nó selecioado for de um objeto ou classe.
                     if(objeto instanceof NoClasse) {
                         menuClasse.show(e.getComponent(),e.getX(),e.getY());
                     } else if(objeto instanceof NoObjeto) {

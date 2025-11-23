@@ -14,6 +14,9 @@ import trabalhopoo1.entidades.Cliente;
 import trabalhopoo1.gui.beans.ListaConsulta;
 import trabalhopoo1.gui.views.ViewPrincipal;
 
+/**
+ * Controlador da tela de Consulta de Clientes
+ */
 public class ConsultaClientesController {
     
     private ViewPrincipal viewPrincipal;
@@ -24,9 +27,20 @@ public class ConsultaClientesController {
         this.viewPrincipal = viewPrincipal;
        
     }
+    
+    /**
+     * Aciona a tela de cadastro de clientes.
+     */
     public void adicionar() {
         viewPrincipal.mudarPainelCentral("FormularioClientes");
     }
+    
+    /**
+     * Exibe os resultados de uma busca no painel de resultados.
+     * @param chave Chave da busca
+     * @param tipoBusca Tipo de busca
+     * @param painelResultados Painel de resultados
+     */
     public void exibirResultado(String chave, String tipoBusca, JPanel painelResultados) {
         painelResultados.setLayout(new GridLayout());
         painelResultados.removeAll();
@@ -73,6 +87,12 @@ public class ConsultaClientesController {
         painelResultados.setVisible(true);
     }
     
+    /**
+     * Faz uma busca de clientes
+     * @param chave Chave de busca
+     * @param tipoBusca Tipo de busca
+     * @return {@code ArrayList<Clientes>} com os clientes encontrados.
+     */
     public ArrayList<Cliente> buscarClientes(String chave, String tipoBusca) {
         ArrayList<Cliente> clientes = new ArrayList<>();
         
@@ -101,6 +121,10 @@ public class ConsultaClientesController {
         return clientes;
     }
     
+    /**
+     * Remove os clientes selecionados.
+     * @param painelResultados painel de resultados
+     */
     public void remover(JPanel painelResultados) {
         
         if(lista.getSelecionados().isEmpty()) {
@@ -126,6 +150,9 @@ public class ConsultaClientesController {
         painelResultados.setVisible(false);
     }
     
+    /**
+     * Retorna para o menu principal
+     */
     public void voltar() {
         viewPrincipal.mudarPainelCentral("MenuPrincipal");
     }

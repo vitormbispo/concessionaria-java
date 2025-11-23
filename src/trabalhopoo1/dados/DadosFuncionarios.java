@@ -10,7 +10,6 @@ public class DadosFuncionarios {
     public static List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
-    
 
     /**
      * Cadastra um novo funcionario.
@@ -73,21 +72,6 @@ public class DadosFuncionarios {
      */
     public static boolean semCadastros() {
         return funcionarios.isEmpty();
-    }
-    
-    /**
-     * Lista todos os funcionários
-     */
-    public static void listar() {
-        System.out.println("\n================== Funcionários ==================\n");
-        if(funcionarios.size() == 0) {
-            System.out.println("-- Nenhum funcionário cadastrado --");
-            return;
-        }
-        
-        for(int i = 0; i < funcionarios.size(); i++) {
-            System.out.printf("%s - %s\n",i+1,funcionarios.get(i).toString());
-        }
     }
     
     /**

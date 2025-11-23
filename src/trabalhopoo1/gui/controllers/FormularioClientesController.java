@@ -1,6 +1,5 @@
 package trabalhopoo1.gui.controllers;
 
-import trabalhopoo1.Main;
 import trabalhopoo1.dados.DadosClientes;
 import trabalhopoo1.entidades.Cliente;
 import trabalhopoo1.excecoes.EntradaInvalidaException;
@@ -8,13 +7,21 @@ import trabalhopoo1.gui.views.FormularioClientes;
 import trabalhopoo1.gui.views.ViewPrincipal;
 
 public class FormularioClientesController {
-    private ViewPrincipal viewPrincipal;
+    private final ViewPrincipal viewPrincipal;
     private FormularioClientes formulario;
     
     public FormularioClientesController(ViewPrincipal viewPrincipal) {
         this.viewPrincipal = viewPrincipal;
     }
     
+    /**
+     * Cadastra um novo cliete
+     * @param nome Nome do cliente
+     * @param telefone Telefone do cliente
+     * @param email Email do cliente
+     * @param cpf CPF do cliente
+     * @param rg RG do cliente
+     */
     public void cadastrarCliente(String nome, String telefone,String email, String cpf, String rg) {
         if(!validarEntradas(nome,telefone,email,cpf,rg))
             return;
@@ -29,6 +36,15 @@ public class FormularioClientesController {
         
     }
     
+    /**
+     * Modifica um cliete
+     * @param cliente Cliente a modificar
+     * @param nome Novo nome do cliente
+     * @param telefone Novo telefone do cliente
+     * @param email Novo email do cliente
+     * @param cpf Novo CPF do cliente
+     * @param rg Novo RG do cliente
+     */
     public void modificarCliente(Cliente cliente,String nome, String telefone, String email, String cpf, String rg) {
         boolean entradasValidas = true;
         
@@ -52,6 +68,9 @@ public class FormularioClientesController {
         viewPrincipal.getArvore().getNoClientes().alterarObjeto(cliente, novoCliente);
         viewPrincipal.mudarPainelCentral("ConsultaClientes");
     }
+    
+    
+    // Validações
     
     public boolean validarNome(String nome) {
         boolean valido = true;
@@ -131,6 +150,9 @@ public class FormularioClientesController {
                validarRg(rg);
     }
     
+    /**
+     * Volta para a tela de consulta de clientes
+     */
     public void cancelar() {
         viewPrincipal.mudarPainelCentral("ConsultaClientes");
     }

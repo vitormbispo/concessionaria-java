@@ -79,21 +79,6 @@ public class DadosVeiculos {
     }
     
     /**
-     * Lista todos os veículos
-     */
-    public static void listar() {
-        System.out.println("\n================== Veículos ==================\n");
-        if(veiculos.size() == 0) {
-            System.out.println("-- Nenhum veículo cadastrado --");
-            return;
-        }
-        
-        for(int i = 0; i < veiculos.size(); i++) {
-            System.out.printf("%s - %s\n",i+1,veiculos.get(i).toString());
-        }
-    }
-    
-    /**
      * Verifica se não existe nenhum veículo cadastrado
      * @return {@code true} se não hover nenhum veículo cadastrado.
      */
@@ -130,7 +115,7 @@ public class DadosVeiculos {
     
     /**
      * Verifica se existe um veículo cadastrado com determinado nome
-     * @param veiculo
+     * @param nome Nome do veículo
      * @return {@code true} se existe um veículo com esse nome
      */
     public static boolean veiculoExiste(String nome) {

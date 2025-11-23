@@ -1,28 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package trabalhopoo1.gui.views;
 
-import trabalhopoo1.gui.beans.ListaConsulta;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import trabalhopoo1.dados.DadosClientes;
-import trabalhopoo1.entidades.Cliente;
 import trabalhopoo1.gui.controllers.ConsultaClientesController;
 
-/**
- *
- * @author vitorbispo
- */
 public class ConsultaClientes extends javax.swing.JPanel {
     public ConsultaClientesController controller;
     /**
@@ -171,6 +150,9 @@ public class ConsultaClientes extends javax.swing.JPanel {
         reiniciar();
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
     
+    /**
+     * Reinicia os elementos da tela
+     */
     public void reiniciar() {
         this.removeAll();
         this.initComponents();

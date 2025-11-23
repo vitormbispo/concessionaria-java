@@ -83,21 +83,6 @@ public class DadosVendas {
     }
     
     /**
-     * Lista todas as vendas
-     */
-    public static void listar() {
-        System.out.println("\n================== Vendas ==================\n");
-        if(vendas.size() == 0) {
-            System.out.println("-- Nenhuma venda cadastrada --");
-            return;
-        }
-        
-        for(int i = 0; i < vendas.size(); i++) {
-            System.out.printf("%s - %s\n",i+1,vendas.get(i).toString());
-        }
-    }
-    
-    /**
      * Verifica se determinado cliente possui alguma venda cadastrada
      * @param cpfCliente CPF do cliente
      * @return {@code true} se houver pelo menos uma venda cadastrada com esse cliente
@@ -141,7 +126,7 @@ public class DadosVendas {
     
     /**
      * Verifica se existe alguma venda cadastrada com um veículo de determinado nome ou chassi
-     * @param veiculo Nome ou chassi do veículo
+     * @param nome Nome ou chassi do veículo
      * @return {@code true} se houver pelo menos uma venda cadastrada com esse nome de veículo
      */
     public static boolean veiculoPossuiVenda(String nome) {
@@ -187,7 +172,5 @@ public class DadosVendas {
             if(venda.getVeiculo().equals(antigo))
                 venda.setVeiculo(novo);
         }
-    }
-    
-    
+    }  
 }

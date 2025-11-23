@@ -7,7 +7,9 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
+/**
+ * Janela princiapl do programa
+ */
 public class ViewPrincipal extends JFrame{
     private JPanel painelPrincipal;
     private JPanel painelCentro;
@@ -40,11 +42,21 @@ public class ViewPrincipal extends JFrame{
         this.setVisible(true);
     }
     
+    /**
+     * Adiciona um novo painel ao layout do painel central.
+     * @param painel Painel a adicionar
+     * @param nome Nome do painel
+     */
     public void adicionarPainelCentral(JPanel painel, String nome) {
         this.painelCentro.add(painel,nome);
         this.painelCentro.revalidate();
         this.painelCentro.repaint();
     }
+    
+    /**
+     * Altera o painel central
+     * @param nome Nome da painel
+     */
     public void mudarPainelCentral(String nome) {
         this.layoutCentral.show(painelCentro, nome);
     }

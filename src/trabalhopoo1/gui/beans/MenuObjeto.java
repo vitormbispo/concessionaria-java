@@ -15,6 +15,9 @@ import trabalhopoo1.entidades.Funcionario;
 import trabalhopoo1.entidades.Veiculo;
 import trabalhopoo1.entidades.Venda;
 
+/**
+ * Menu de contexto para nós de objeto da árvore.
+ */
 public class MenuObjeto extends JPopupMenu{
     private final JMenuItem remover;
     private final JMenuItem editar;
@@ -30,8 +33,11 @@ public class MenuObjeto extends JPopupMenu{
         this.add(remover);
     }
     
+    /**
+     * Handler para a opção "Remover" do menu
+     */
     private class RemoverObjetoHandler implements ActionListener {
-        private Arvore arvore;
+        private final Arvore arvore;
         
         public RemoverObjetoHandler(Arvore arvore) {
             this.arvore = arvore;
@@ -63,6 +69,9 @@ public class MenuObjeto extends JPopupMenu{
         }
     }
     
+    /**
+     * Handler para a opção "Editar..." do menu
+     */
     private class EditarObjetoHandler implements ActionListener {
         private Arvore arvore;
         

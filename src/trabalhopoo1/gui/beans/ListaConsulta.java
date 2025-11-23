@@ -1,35 +1,35 @@
 package trabalhopoo1.gui.beans;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import trabalhopoo1.gui.views.ViewPrincipal;
 
+/**
+ * Exibe uma lista de resultados em formato de tabela.
+ */
 public class ListaConsulta extends JPanel{
     
-    private ViewPrincipal viewPrincipal;
-    private ArrayList<Integer> selecionados;
+    private final ArrayList<Integer> selecionados;
     
     public ListaConsulta(ArrayList<String> colunas, ArrayList<ArrayList<String>> linhas, ActionListener editarListener) {
-        this.viewPrincipal = viewPrincipal;
         this.selecionados = new ArrayList<>();
         
-        GridLayout layout = new GridLayout(0,colunas.size(),0,0);
+        GridLayout layout = new GridLayout(0,colunas.size(),5,0);
         this.setLayout(layout);
+        
+        // Constrói as colunas
         colunas.forEach((coluna) -> {
             JLabel atributo = new JLabel();
             atributo.setText(coluna);
             this.add(atributo);
         });
         
+        // Constrói as linhas, com botões de edição e caixas de seleção para remoção.
         for(int i = 0; i < linhas.size();i++) {
             ArrayList<String> linha = linhas.get(i);
             linha.forEach((campo) -> {
@@ -53,9 +53,12 @@ public class ListaConsulta extends JPanel{
         return selecionados;
     }
     
+    /**
+     * Handler para as caixas de seleção
+     */
     private class CheckBoxHandler implements ActionListener{
-        private int indice;
-        private JCheckBox box;
+        private final int indice;
+        private final JCheckBox box;
         
         public CheckBoxHandler(int indice, JCheckBox box) {
             this.indice = indice;

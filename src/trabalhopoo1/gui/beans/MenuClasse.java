@@ -6,6 +6,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
+/**
+ * Menu de contexto para nós de classe da árvore.
+ */
 public class MenuClasse extends JPopupMenu{
     private final JMenuItem adicionar;
     private final JMenuItem remover;
@@ -23,6 +26,9 @@ public class MenuClasse extends JPopupMenu{
         
     }
     
+    /**
+     * Handler para a opção "Remover todos" do menu
+     */
     private class RemoverTodosHandler implements ActionListener {
         private Arvore arvore;
         
@@ -47,8 +53,11 @@ public class MenuClasse extends JPopupMenu{
         }
     }
     
+    /**
+     * Handler para a opção "Adicionar..." do menu
+     */
     private class AdicionarObjetoHandler implements ActionListener{
-        private Arvore arvore;
+        private final Arvore arvore;
         
         public AdicionarObjetoHandler(Arvore arvore) {
             this.arvore = arvore;

@@ -3,9 +3,13 @@ package trabalhopoo1.gui.beans;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+/**
+ * Nó da árvore representando uma classe de objetos.
+ * @param <T> Classe
+ */
 public class NoClasse<T> extends DefaultMutableTreeNode{
-    private DefaultTreeModel modelo;
-    private DefaultMutableTreeNode raiz;
+    private final DefaultTreeModel modelo;
+    private final DefaultMutableTreeNode raiz;
     
     public NoClasse(String nome, DefaultTreeModel modelo, DefaultMutableTreeNode raiz) {
         this.setUserObject(nome);
@@ -13,12 +17,21 @@ public class NoClasse<T> extends DefaultMutableTreeNode{
         this.raiz = raiz;
     }
     
+    /**
+     * Adiciona um objeto a esse nó como filho
+     * @param objeto Objeto a adicionar
+     */
     public void adicionarObjeto(T objeto) {
         NoObjeto no = new NoObjeto<T>(objeto,this);
         this.add(no);
         modelo.reload(raiz);
     }
     
+    /**
+     * Substitui um objeto filho
+     * @param objeto
+     * @param novoObjeto 
+     */
     public void alterarObjeto(T objeto, T novoObjeto) {
         int indice = indiceObjeto(objeto);
         NoObjeto no = (NoObjeto) this.getChildAt(indice);
@@ -26,6 +39,11 @@ public class NoClasse<T> extends DefaultMutableTreeNode{
         modelo.reload(raiz);
     }
     
+    /**
+     * Retorna o índice de determinado objeto na árvore, ou -1 caso objeto não esteja presente.
+     * @param objeto Objeto a encontrar
+     * @return Índice do objeto
+     */
     public int indiceObjeto(T objeto) {
         for(int i = 0; i < this.getChildCount(); i++) {
             DefaultMutableTreeNode no = (DefaultMutableTreeNode)this.getChildAt(i);
@@ -35,6 +53,10 @@ public class NoClasse<T> extends DefaultMutableTreeNode{
         return -1;
     }
     
+    /**
+     * Remove determinado objeto filho da árvore
+     * @param objeto 
+     */
     public void removerObjeto(T objeto) {
         int indice = indiceObjeto(objeto);
         
@@ -45,6 +67,9 @@ public class NoClasse<T> extends DefaultMutableTreeNode{
         modelo.reload();
     }
     
+    /**
+     * Remove todos os filhos desse nó
+     */
     public void removerTodos() {
         this.removeAllChildren();
         modelo.reload();

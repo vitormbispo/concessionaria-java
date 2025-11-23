@@ -73,21 +73,6 @@ public class DadosClientes {
     }
     
     /**
-     * Lista todos os clientes cadastrados.
-     */
-    public static void listar() {
-        System.out.println("\n================== Clientes ==================\n");
-        if(semCadastros()) {
-            System.out.println("-- Nenhum cliente cadastrado --");
-            return;
-        }
-        
-        for(int i = 0; i < clientes.size(); i++) {
-            System.out.printf("%s - %s\n",i+1,clientes.get(i).toString());
-        }
-    }
-    
-    /**
      * Verifica se não existe nenhum cliente cadastrado
      * @return {@code true} se não hover nenhum cliente cadastrado.
      */
@@ -98,7 +83,9 @@ public class DadosClientes {
     // Validações
     
     /**
-     * Valida se o telefone contém apenas números
+     * Verifica a validade do telefone baseado nos seguintes fatores: <br>
+     * - Não pode ser vazio <br>
+     * - Deve conter apenas números
      * @param telefone Telefone a validar
      * @return {@code true} se o telefone for válido.
      */
@@ -117,6 +104,7 @@ public class DadosClientes {
     
     /** 
      * Verifica a validade do Email baseado nos fatores: <br>
+     *  - Não pode ser vazio <br>
      *  - Deve conter um @; <br>
      *  - O Email não pode estar cadastrado.
      * @param email Email a validar
@@ -139,6 +127,7 @@ public class DadosClientes {
     
     /**
      * Verifica a validade do CPF baseado nos fatores: <br>
+     *  - Não pode ser vazio <br>
      *  - Tamanho deve ser 11; <br>
      *  - Deve conter apenas números; <br>
      *  - O CPF não pode estar cadastrado.
@@ -162,6 +151,12 @@ public class DadosClientes {
         return valido;
     }
     
+    /**
+     * Verifica a validade do nome baseado nos fatores: <br>
+     *  - Não pode ser vazio
+     * @param nome Nome a validar
+     * @return {@code true} se o nome for válido
+     */
     public static boolean validarNome(String nome) {
         boolean valido = false;
         
@@ -172,10 +167,13 @@ public class DadosClientes {
         
         return valido;
     }
+    
      /**
      * Verifica a validade do RG baseado nos fatores: <br>
+     *  - Não pode ser vazio <br>
      *  - Deve conter apenas números; <br>
      *  - O RG não pode estar cadastrado.
+     * 
      * @param rg RG a validar
      * @return {@code true} se o RG for válido.
      */
