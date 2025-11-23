@@ -19,6 +19,13 @@ public class NoClasse<T> extends DefaultMutableTreeNode{
         modelo.reload(raiz);
     }
     
+    public void alterarObjeto(T objeto, T novoObjeto) {
+        int indice = indiceObjeto(objeto);
+        NoObjeto no = (NoObjeto) this.getChildAt(indice);
+        no.setUserObject(novoObjeto);
+        modelo.reload(raiz);
+    }
+    
     public int indiceObjeto(T objeto) {
         for(int i = 0; i < this.getChildCount(); i++) {
             DefaultMutableTreeNode no = (DefaultMutableTreeNode)this.getChildAt(i);

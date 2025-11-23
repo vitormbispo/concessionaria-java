@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package trabalhopoo1.gui.beans;
 
 import java.awt.event.ActionEvent;
@@ -9,12 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import trabalhopoo1.entidades.Cliente;
 
-/**
- *
- * @author vitorbispo
- */
 public class MenuClasse extends JPopupMenu{
     private final JMenuItem adicionar;
     private final JMenuItem remover;

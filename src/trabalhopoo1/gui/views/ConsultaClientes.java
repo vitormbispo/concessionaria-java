@@ -50,6 +50,8 @@ public class ConsultaClientes extends javax.swing.JPanel {
         jPanelResultado = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButtonVoltar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
+        jButtonAdicionar = new javax.swing.JButton();
 
         jTextFieldBusca.setToolTipText("Insira sua consulta");
 
@@ -63,7 +65,7 @@ public class ConsultaClientes extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel1.setText("Consultar Clientes");
+        jLabel1.setText("Clientes");
 
         jPanelResultado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -87,6 +89,20 @@ public class ConsultaClientes extends javax.swing.JPanel {
             }
         });
 
+        jButtonRemover.setText("Remover");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+
+        jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,22 +116,26 @@ public class ConsultaClientes extends javax.swing.JPanel {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                                .addComponent(jTextFieldBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxTipoBusca, 0, 98, Short.MAX_VALUE)))
+                                .addComponent(jComboBoxTipoBusca, 0, 92, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButtonAdicionar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonVoltar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonRemover)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jButtonAdicionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,20 +145,33 @@ public class ConsultaClientes extends javax.swing.JPanel {
                     .addComponent(jButtonBuscar))
                 .addGap(18, 18, 18)
                 .addComponent(jPanelResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRemover)
+                    .addComponent(jButtonVoltar))
+                .addGap(7, 7, 7))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPerformed
-        controller.buscar(jTextFieldBusca.getText(), jComboBoxTipoBusca.getSelectedItem().toString(), jPanelResultado);
+        controller.exibirResultado(jTextFieldBusca.getText(), jComboBoxTipoBusca.getSelectedItem().toString(), jPanelResultado);
     }//GEN-LAST:event_buscarPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         controller.voltar();
         reiniciar();
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        controller.remover(jPanelResultado);
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
+        controller.adicionar();
+        reiniciar();
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
     
-    private void reiniciar() {
+    public void reiniciar() {
         this.removeAll();
         this.initComponents();
         jPanelResultado.setVisible(false);
@@ -147,7 +180,9 @@ public class ConsultaClientes extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxTipoBusca;
     private javax.swing.JLabel jLabel1;

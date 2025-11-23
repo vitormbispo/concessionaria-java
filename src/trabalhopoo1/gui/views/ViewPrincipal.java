@@ -49,6 +49,8 @@ public class ViewPrincipal extends JFrame{
         this.layoutCentral.show(painelCentro, nome);
     }
     
+  
+    
     public Arvore getArvore() {
         return this.arvore;
     } 

@@ -2,12 +2,13 @@ package trabalhopoo1.dados;
 
 import trabalhopoo1.entidades.Cliente;
 import java.util.ArrayList;
+import trabalhopoo1.excecoes.EntradaInvalidaException;
 
 /**
  * Classe para armazenar e gerenciar os clientes
  */
 public class DadosClientes {
-    private static ArrayList<Cliente> clientes = new ArrayList<>();
+    private final static ArrayList<Cliente> clientes = new ArrayList<>();
 
     public static ArrayList<Cliente> getClientes() {
         return clientes;
@@ -104,9 +105,11 @@ public class DadosClientes {
     public static boolean validarTelefone(String telefone) {
         boolean valido = false;
         
-        if(!telefone.matches("\\d+")) {
-            System.out.println("O telefone deve conter apenas números!");
-        } else
+        if(telefone.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else if(!telefone.matches("\\d+"))
+            throw new EntradaInvalidaException("O telefone deve conter apenas números!");
+        else
             valido = true;
         
         return valido;
@@ -122,11 +125,13 @@ public class DadosClientes {
     public static boolean validarEmail(String email) {
         boolean valido = false;
         
-        if(emailExiste(email)) {
-            System.out.println("Esse e-mail já está cadastrado!");
-        } else if (!email.contains("@") || email.length() < 5){
-            System.out.println("E-mail inválido!");
-        }else
+        if(email.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else if(emailExiste(email))
+           throw new EntradaInvalidaException("Esse e-mail já está cadastrado!");
+        else if (!email.contains("@") || email.length() < 5)
+            throw new EntradaInvalidaException("E-mail inválido!");
+        else
             valido = true;
         
         return valido;
@@ -143,19 +148,31 @@ public class DadosClientes {
     public static boolean validarCpf(String cpf) {
         boolean valido = false;
         
-        if(cpf.length() != 11) {
-            System.out.println("Tamanho do CPF incorreto!");
-        } else if (!cpf.matches("\\d+")) {
-            System.out.println("O CPF deve conter apenas números!");
-        } else if (cpfExiste(cpf)){
-            System.out.println("Esse CPF já está cadastrado!");
-        } else
+        if(cpf.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else if(cpf.length() != 11)
+            throw new EntradaInvalidaException("Tamanho do CPF incorreto!");
+        else if (!cpf.matches("\\d+"))
+            throw new EntradaInvalidaException("Deve conter apenas números!");
+        else if (cpfExiste(cpf))
+            throw new EntradaInvalidaException("Esse CPF já foi cadastrado!");
+        else
             valido = true;
         
         return valido;
     }
     
-        /**
+    public static boolean validarNome(String nome) {
+        boolean valido = false;
+        
+        if(nome.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else
+            valido = true;
+        
+        return valido;
+    }
+     /**
      * Verifica a validade do RG baseado nos fatores: <br>
      *  - Deve conter apenas números; <br>
      *  - O RG não pode estar cadastrado.
@@ -165,11 +182,13 @@ public class DadosClientes {
     public static boolean validarRg(String rg) {
         boolean valido = false;
         
-        if (!rg.matches("\\d+")) {
-            System.out.println("O RG deve conter apenas números!");
-        } else if (rgExiste(rg)){
-            System.out.println("Esse RG já está cadastrado!");
-        } else 
+        if (rg.isBlank()) 
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else if (rgExiste(rg))
+            throw new EntradaInvalidaException("Esse RG já está cadastrado!");
+        else if (!rg.matches("\\d+")) 
+            throw new EntradaInvalidaException("O RG deve conter apenas números!");
+        else
             valido = true;
         
         return valido;
