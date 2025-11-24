@@ -3,9 +3,10 @@ package trabalhopoo1.dados;
 import trabalhopoo1.entidades.Funcionario;
 import java.util.ArrayList;
 import java.util.List;
+import trabalhopoo1.excecoes.EntradaInvalidaException;
 
 public class DadosFuncionarios {
-    private static final List<Funcionario> funcionarios = new ArrayList<>();
+    private static List<Funcionario> funcionarios = new ArrayList<>();
 
     public static List<Funcionario> getFuncionarios() {
         return funcionarios;
@@ -44,8 +45,9 @@ public class DadosFuncionarios {
      * @param novaDescricaoFuncao Descrição atualizada
      * @param novaCargaHoraria Carga horária atualizada
      */
-    public static void alterar(Funcionario funcionario, String novoNome, String novaQualificacao, String novaDescricaoFuncao, int novaCargaHoraria) {
+    public static void alterar(Funcionario funcionario, String novoNome, long novaMatricula, String novaQualificacao, String novaDescricaoFuncao, int novaCargaHoraria) {
         funcionario.setNome(novoNome);
+        funcionario.setMatricula(novaMatricula);
         funcionario.setQualificacao(novaQualificacao);
         funcionario.setDescFuncao(novaDescricaoFuncao);
         funcionario.setCargaHoraria(novaCargaHoraria);
@@ -60,10 +62,14 @@ public class DadosFuncionarios {
         if(funcionarios.contains(funcionario)) {
             DadosVendas.redirecionarReferencias(funcionario, funcionario.clone());
             funcionarios.remove(funcionario);
-            System.out.println("Funcionário removido com sucesso!");
         }
-        else
-            System.out.println("Funcionário não encontrado!");
+    }
+    
+    /**
+     * Remove todos os funcionários da lista.
+     */
+    public static void removerTodos() {
+        funcionarios = new ArrayList();
     }
     
     /**
@@ -79,11 +85,67 @@ public class DadosFuncionarios {
      * @param matricula Matrícula do funcionário
      * @return {@code true} se houver algum funcionário com essa matrícula.
      */
-    public static boolean matriculaExiste(int matricula) {
+    public static boolean matriculaExiste(long matricula) {
         for(Funcionario funcionario : funcionarios) {
             if(funcionario.getNumeroMatricula() == matricula)
                 return true;
         }
         return false;
+    }
+    
+    /**
+     * Valida uma entrada de matrícula de acordo com os seguintes fatores: <br>
+     *    - Não pode ser vazia <br>
+     *    - Deve conter apenas números <br>
+     *    - Deve ser única
+     * @param matricula Nº de matrícula (como texto)
+     * @return 
+     */
+    public static boolean validarMatricula(String matricula) {
+        boolean valido = false;
+        
+        if(matricula.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else{
+            try {
+                long convertido = Long.parseLong(matricula);
+                if(matriculaExiste(convertido))
+                    throw new EntradaInvalidaException("Esse Nº de matrícula já está cadastrado!");
+                else
+                    valido = true;
+            } catch(NumberFormatException e) {
+                throw new EntradaInvalidaException("Deve conter apenas números!");
+            }
+        }
+        
+        return valido;
+    }
+    
+    /**
+     * Valida uma entrada de carga horária de acordo com os seguintes fatores: <br>
+     *    - Não pode ser vazia <br>
+     *    - Deve conter apenas números <br>
+     *    - Deve estar entre 1 e 50 horas semanais
+     * @param carga Nº de matrícula (como texto)
+     * @return 
+     */
+    public static boolean validarCargaHoraria(String carga) {
+        boolean valido = false;
+        
+        if(carga.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else{
+            try {
+                int convertido = Integer.parseInt(carga);
+                if(convertido < 1 || convertido > 50)
+                    throw new EntradaInvalidaException("Carga horária inválida! (1-50)");
+                else
+                    valido = true;
+            } catch(NumberFormatException e) {
+                throw new EntradaInvalidaException("Deve conter apenas números!");
+            }
+        }
+        
+        return valido;
     }
 }

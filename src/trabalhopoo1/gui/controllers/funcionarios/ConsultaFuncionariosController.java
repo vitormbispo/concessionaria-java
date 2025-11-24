@@ -1,4 +1,4 @@
-package trabalhopoo1.gui.controllers;
+package trabalhopoo1.gui.controllers.funcionarios;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,30 +9,29 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import trabalhopoo1.Main;
-import trabalhopoo1.dados.DadosClientes;
-import trabalhopoo1.entidades.Cliente;
+import trabalhopoo1.dados.DadosFuncionarios;
+import trabalhopoo1.entidades.Funcionario;
 import trabalhopoo1.gui.beans.ListaConsulta;
 import trabalhopoo1.gui.views.ViewPrincipal;
 
 /**
- * Controlador da tela de Consulta de Clientes
+ * Controlador da tela de Consulta de Funcionários
  */
-public class ConsultaClientesController {
+public class ConsultaFuncionariosController {
     
     private ViewPrincipal viewPrincipal;
     private ListaConsulta lista;
-    private ArrayList<Cliente> clientesEncontrados;
+    private ArrayList<Funcionario> funcionariosEncontrados;
     
-    public ConsultaClientesController(ViewPrincipal viewPrincipal) {
+    public ConsultaFuncionariosController(ViewPrincipal viewPrincipal) {
         this.viewPrincipal = viewPrincipal;
-       
     }
     
     /**
-     * Aciona a tela de cadastro de clientes.
+     * Aciona a tela de cadastro de funcionários.
      */
     public void adicionar() {
-        viewPrincipal.mudarPainelCentral("FormularioClientes");
+        viewPrincipal.mudarPainelCentral("FormularioFuncionarios");
     }
     
     /**
@@ -46,24 +45,24 @@ public class ConsultaClientesController {
         painelResultados.removeAll();
         
         ArrayList<ArrayList<String>> linhas = new ArrayList<>();
-        clientesEncontrados = buscarClientes(chave,tipoBusca);
+        funcionariosEncontrados = buscarFuncionarios(chave,tipoBusca);
         
-        if(clientesEncontrados.size() == 0) {
+        if(funcionariosEncontrados.size() == 0) {
             JOptionPane.showMessageDialog(painelResultados, "Nenhum dado encontrado!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
         
-        clientesEncontrados.forEach((cliente) -> {
+        funcionariosEncontrados.forEach((funcionario) -> {
             ArrayList linha = new ArrayList(Arrays.asList(
-                cliente.getNome(),
-                cliente.getTelefone(),
-                cliente.getEmail(),
-                cliente.getCpf(),
-                cliente.getRg()
+                funcionario.getNome(),
+                Long.toString(funcionario.getNumeroMatricula()),
+                funcionario.getQualificacao(),
+                funcionario.getDescFuncao(),
+                Integer.toString(funcionario.getCargaHoraria())
             ));
             linhas.add(linha);
         });
         
-        ArrayList<String> colunas = new ArrayList<>(Arrays.asList("Nome","Telefone","E-mail","CPF","RG","Editar","Remover"));
+        ArrayList<String> colunas = new ArrayList<>(Arrays.asList("Nome","Nº Matrícula","Qualificação","Desc. Função","Carga Horária","Editar","Remover"));
         
         lista = new ListaConsulta(colunas,linhas, new ActionListener(){
             // Handler do botão editar
@@ -71,12 +70,11 @@ public class ConsultaClientesController {
             public void actionPerformed(ActionEvent e) {
                 JButton botao = (JButton) e.getSource();
                 int indice = Integer.parseInt(botao.getName());
-                System.out.println("Indice: "+indice);
                 
-                Main.getFormClientes().ativarEdicao(clientesEncontrados.get(indice));
-                Main.getConsClientes().reiniciar();
+                Main.getFormFuncionarios().ativarEdicao(funcionariosEncontrados.get(indice));
+                Main.getConsFuncionarios().reiniciar();
                 
-                viewPrincipal.mudarPainelCentral("FormularioClientes");
+                viewPrincipal.mudarPainelCentral("FormularioFuncionarios");
             }
         });
         
@@ -88,29 +86,29 @@ public class ConsultaClientesController {
     }
     
     /**
-     * Faz uma busca de clientes
+     * Faz uma busca de funcionários
      * @param chave Chave de busca
      * @param tipoBusca Tipo de busca
-     * @return {@code ArrayList<Clientes>} com os clientes encontrados.
+     * @return {@code ArrayList<Funcionario>} com os funcionários encontrados.
      */
-    public ArrayList<Cliente> buscarClientes(String chave, String tipoBusca) {
-        ArrayList<Cliente> clientes = new ArrayList<>();
+    public ArrayList<Funcionario> buscarFuncionarios(String chave, String tipoBusca) {
+        ArrayList<Funcionario> funcionarios = new ArrayList<>();
         
         switch(tipoBusca) {
             case "Nome" -> {
-                for(int i = 0; i < DadosClientes.getClientes().size(); i++) {
-                    Cliente cliente = DadosClientes.getClientes().get(i);
+                for(int i = 0; i < DadosFuncionarios.getFuncionarios().size(); i++) {
+                    Funcionario funcionario = DadosFuncionarios.getFuncionarios().get(i);
                     
-                    if(cliente.getNome().contains(chave))
-                        clientes.add(cliente);
+                    if(funcionario.getNome().contains(chave))
+                        funcionarios.add(funcionario);
                 }
                 break;
             }
-            case "CPF" -> {
-                for(int i = 0; i < DadosClientes.getClientes().size(); i++) {
-                    Cliente cliente = DadosClientes.getClientes().get(i);
-                    if(cliente.getCpf().equals(chave)) {
-                        clientes.add(cliente);
+            case "Nº Matrícula" -> {
+                for(int i = 0; i < DadosFuncionarios.getFuncionarios().size(); i++) {
+                    Funcionario funcionario = DadosFuncionarios.getFuncionarios().get(i);
+                    if(funcionario.getNumeroMatricula() == Long.parseLong(chave)) {
+                        funcionarios.add(funcionario);
                         break;
                     }
                 }
@@ -118,33 +116,33 @@ public class ConsultaClientesController {
             }
         }
         
-        return clientes;
+        return funcionarios;
     }
     
     /**
-     * Remove os clientes selecionados.
+     * Remove os funcionários selecionados.
      * @param painelResultados painel de resultados
      */
     public void remover(JPanel painelResultados) {
         
         if(lista.getSelecionados().isEmpty()) {
-            JOptionPane.showMessageDialog(painelResultados, "Nenhum cliente selecionado para remover!", "Erro", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(painelResultados, "Nenhum funcionário selecionado para remover!", "Erro", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
         int confirmacao = JOptionPane.showConfirmDialog(
                 painelResultados, 
-                "Deseja remover o(s) cliente(s) selecionado(s)?", "Remover cliente(s)", 
+                "Deseja remover o(s) funcionário(s) selecionado(s)?", "Remover funcionário(s)", 
                 JOptionPane.YES_NO_OPTION ,
                 JOptionPane.QUESTION_MESSAGE);
         
-        if(confirmacao == JOptionPane.NO_OPTION)
+        if(confirmacao == JOptionPane.NO_OPTION || confirmacao == JOptionPane.CANCEL_OPTION)
             return;
         
         lista.getSelecionados().forEach((indice) -> {
-            Cliente cliente = clientesEncontrados.get(indice);
-            viewPrincipal.getArvore().getNoClientes().removerObjeto(cliente);
-            DadosClientes.remover(cliente);
+            Funcionario funcionario = funcionariosEncontrados.get(indice);
+            viewPrincipal.getArvore().getNoFuncionarios().removerObjeto(funcionario);
+            DadosFuncionarios.remover(funcionario);
             
         });
         painelResultados.setVisible(false);

@@ -8,7 +8,7 @@ import trabalhopoo1.excecoes.EntradaInvalidaException;
  * Classe para armazenar e gerenciar os clientes
  */
 public class DadosClientes {
-    private final static ArrayList<Cliente> clientes = new ArrayList<>();
+    private static ArrayList<Cliente> clientes = new ArrayList<>();
 
     public static ArrayList<Cliente> getClientes() {
         return clientes;
@@ -66,10 +66,14 @@ public class DadosClientes {
         if(clientes.contains(cliente)) {
             DadosVendas.redirecionarReferencias(cliente,cliente.clone());
             clientes.remove(cliente);
-            System.out.println("Cliente removido com sucesso.");
-        } else
-            System.out.println("Cliente não encontrado!.");
-        
+        }
+    }
+    
+    /**
+     * Remove todos os clientes
+     */
+    public static void removerTodos() {
+        clientes = new ArrayList<Cliente>();
     }
     
     /**

@@ -1,5 +1,6 @@
 package trabalhopoo1.gui.beans;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import static trabalhopoo1.util.Util.abreviar;
 /**
  * Exibe uma lista de resultados em formato de tabela.
  */
@@ -20,6 +21,7 @@ public class ListaConsulta extends JPanel{
         this.selecionados = new ArrayList<>();
         
         GridLayout layout = new GridLayout(0,colunas.size(),5,0);
+        this.setMaximumSize(new Dimension(720,10000));
         this.setLayout(layout);
         
         // Constrói as colunas
@@ -34,7 +36,8 @@ public class ListaConsulta extends JPanel{
             ArrayList<String> linha = linhas.get(i);
             linha.forEach((campo) -> {
                 JLabel dado = new JLabel();
-                dado.setText(campo);
+                dado.setText(abreviar(campo,20));
+                dado.setToolTipText(campo);
                 this.add(dado);
             });
             

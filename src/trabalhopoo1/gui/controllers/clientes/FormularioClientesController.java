@@ -1,10 +1,10 @@
-package trabalhopoo1.gui.controllers;
+package trabalhopoo1.gui.controllers.clientes;
 
 import trabalhopoo1.dados.DadosClientes;
 import trabalhopoo1.entidades.Cliente;
 import trabalhopoo1.excecoes.EntradaInvalidaException;
-import trabalhopoo1.gui.views.FormularioClientes;
 import trabalhopoo1.gui.views.ViewPrincipal;
+import trabalhopoo1.gui.views.clientes.FormularioClientes;
 
 public class FormularioClientesController {
     private final ViewPrincipal viewPrincipal;

@@ -83,12 +83,14 @@ public class MenuObjeto extends JPopupMenu{
             NoObjeto no = (NoObjeto) arvore.getSelectionPath().getLastPathComponent();
             Object objeto = no.getUserObject();
             
-            if(objeto instanceof Cliente) {
-                Main.getFormClientes().ativarEdicao((Cliente) objeto);
+            if(objeto instanceof Cliente cliente) {
+                Main.getFormClientes().ativarEdicao(cliente);
                 arvore.getViewPrincipal().mudarPainelCentral("FormularioClientes");
             }
-            else if(objeto instanceof Funcionario)
-                DadosFuncionarios.remover((Funcionario) objeto);
+            else if(objeto instanceof Funcionario funcionario) {
+                Main.getFormFuncionarios().ativarEdicao(funcionario);
+                arvore.getViewPrincipal().mudarPainelCentral("FormularioFuncionarios");
+            }
             else if(objeto instanceof Veiculo)
                 DadosVeiculos.remover((Veiculo) objeto);
             else if(objeto instanceof Venda)

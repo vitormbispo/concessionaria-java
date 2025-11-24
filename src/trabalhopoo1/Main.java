@@ -1,12 +1,16 @@
 package trabalhopoo1;
 
 import java.util.Scanner;
-import trabalhopoo1.gui.controllers.ConsultaClientesController;
-import trabalhopoo1.gui.views.ConsultaClientes;
-import trabalhopoo1.gui.views.FormularioClientes;
+import trabalhopoo1.gui.controllers.clientes.ConsultaClientesController;
 import trabalhopoo1.gui.views.MenuPrincipal;
 import trabalhopoo1.gui.views.ViewPrincipal;
-import trabalhopoo1.gui.controllers.FormularioClientesController;
+import trabalhopoo1.gui.controllers.clientes.FormularioClientesController;
+import trabalhopoo1.gui.controllers.funcionarios.ConsultaFuncionariosController;
+import trabalhopoo1.gui.controllers.funcionarios.FormularioFuncionariosController;
+import trabalhopoo1.gui.views.clientes.ConsultaClientes;
+import trabalhopoo1.gui.views.clientes.FormularioClientes;
+import trabalhopoo1.gui.views.funcionarios.ConsultaFuncionarios;
+import trabalhopoo1.gui.views.funcionarios.FormularioFuncionarios;
 
 // Autores: Bruno Yozo RA: 140076 | Vitor Bispo RA: 138475
 
@@ -20,8 +24,14 @@ public class Main {
     private static FormularioClientes formClientes;
     private static ConsultaClientes consClientes;
     
+    private static FormularioFuncionarios formFuncionarios;
+    private static ConsultaFuncionarios consFuncionarios;
+    
     private static FormularioClientesController formClientesController;
     private static ConsultaClientesController consClientesController;
+    
+    private static FormularioFuncionariosController formFuncionariosController;
+    private static ConsultaFuncionariosController consFuncionariosController;
     
     public static void main(String[] args) {
         view = new ViewPrincipal();
@@ -29,15 +39,24 @@ public class Main {
         formClientesController = new FormularioClientesController(view);
         consClientesController = new ConsultaClientesController(view);
         
+        formFuncionariosController = new FormularioFuncionariosController(view);
+        consFuncionariosController = new ConsultaFuncionariosController(view);
+        
         menuPrincipal = new MenuPrincipal(view);
         formClientes = new FormularioClientes(formClientesController);
         consClientes = new ConsultaClientes(consClientesController);
         
+        formFuncionarios = new FormularioFuncionarios(formFuncionariosController);
+        consFuncionarios = new ConsultaFuncionarios(consFuncionariosController);
+        
         formClientesController.setFormulario(formClientes);
+        formFuncionariosController.setFormulario(formFuncionarios);
         
         view.adicionarPainelCentral(menuPrincipal, "MenuPrincipal");
         view.adicionarPainelCentral(formClientes, "FormularioClientes");
         view.adicionarPainelCentral(consClientes, "ConsultaClientes");
+        view.adicionarPainelCentral(formFuncionarios, "FormularioFuncionarios");
+        view.adicionarPainelCentral(consFuncionarios, "ConsultaFuncionarios");
         
         view.mudarPainelCentral("MenuPrincipal");
     }
@@ -66,4 +85,22 @@ public class Main {
     public static ConsultaClientesController getConsClientesController() {
         return consClientesController;
     }
+
+    public static FormularioFuncionarios getFormFuncionarios() {
+        return formFuncionarios;
+    }
+
+    public static ConsultaFuncionarios getConsFuncionarios() {
+        return consFuncionarios;
+    }
+
+    public static FormularioFuncionariosController getFormFuncionariosController() {
+        return formFuncionariosController;
+    }
+
+    public static ConsultaFuncionariosController getConsFuncionariosController() {
+        return consFuncionariosController;
+    }
+    
+    
 }

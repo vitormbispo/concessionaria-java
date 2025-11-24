@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import trabalhopoo1.dados.DadosClientes;
+import trabalhopoo1.dados.DadosFuncionarios;
 
 /**
  * Menu de contexto para nós de classe da árvore.
@@ -45,11 +47,17 @@ public class MenuClasse extends JPopupMenu{
                     JOptionPane.YES_NO_OPTION, 
                     JOptionPane.WARNING_MESSAGE);
 
-            if(confirmacao == JOptionPane.NO_OPTION)
-                return;
-
-            NoClasse no = (NoClasse) arvore.getSelectionPath().getLastPathComponent();
-            no.removerTodos();
+            if(confirmacao == JOptionPane.YES_OPTION) {
+                NoClasse no = (NoClasse) arvore.getSelectionPath().getLastPathComponent();
+                no.removerTodos();
+                
+                Object objeto = no.getUserObject();
+            
+                if(objeto.equals("Clientes"))
+                    DadosClientes.removerTodos();
+                if(objeto.equals("Funcionários"))
+                    DadosFuncionarios.removerTodos();
+            }
         }
     }
     
@@ -70,6 +78,9 @@ public class MenuClasse extends JPopupMenu{
             
             if(objeto.equals("Clientes"))
                 arvore.getViewPrincipal().mudarPainelCentral("FormularioClientes");
+            if(objeto.equals("Funcionários"))
+                arvore.getViewPrincipal().mudarPainelCentral("FormularioFuncionarios");
+                
         }
     }
 }

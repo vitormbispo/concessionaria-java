@@ -1,8 +1,8 @@
-package trabalhopoo1.gui.views;
+package trabalhopoo1.gui.views.clientes;
 
 import javax.swing.JLabel;
 import trabalhopoo1.entidades.Cliente;
-import trabalhopoo1.gui.controllers.FormularioClientesController;
+import trabalhopoo1.gui.controllers.clientes.FormularioClientesController;
 
 public class FormularioClientes extends javax.swing.JPanel {
     

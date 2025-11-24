@@ -1,13 +1,13 @@
-package trabalhopoo1.gui.views;
+package trabalhopoo1.gui.views.funcionarios;
 
-import trabalhopoo1.gui.controllers.ConsultaClientesController;
+import trabalhopoo1.gui.controllers.funcionarios.ConsultaFuncionariosController;
 
-public class ConsultaClientes extends javax.swing.JPanel {
-    public ConsultaClientesController controller;
+public class ConsultaFuncionarios extends javax.swing.JPanel {
+    public ConsultaFuncionariosController controller;
     /**
      * Creates new form ConsultaClientes
      */
-    public ConsultaClientes(ConsultaClientesController controller) {
+    public ConsultaFuncionarios(ConsultaFuncionariosController controller) {
         this.controller = controller;
         initComponents();
         jPanelResultado.setVisible(false);
@@ -34,7 +34,7 @@ public class ConsultaClientes extends javax.swing.JPanel {
 
         jTextFieldBusca.setToolTipText("Insira sua consulta");
 
-        jComboBoxTipoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF" }));
+        jComboBoxTipoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Nº Matrícula" }));
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -44,9 +44,10 @@ public class ConsultaClientes extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel1.setText("Clientes");
+        jLabel1.setText("Funcionários");
 
         jPanelResultado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelResultado.setMaximumSize(new java.awt.Dimension(700, 32767));
 
         javax.swing.GroupLayout jPanelResultadoLayout = new javax.swing.GroupLayout(jPanelResultado);
         jPanelResultado.setLayout(jPanelResultadoLayout);

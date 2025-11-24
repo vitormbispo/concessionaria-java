@@ -26,17 +26,23 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButtonClientes = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jButtonFuncionarios = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setText("Menu Principal");
 
+        jButton5.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/gui/views/vendas.png"))); // NOI18N
         jButton5.setText("Vendas");
 
+        jButton6.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/gui/views/veiculos.png"))); // NOI18N
         jButton6.setText("Veículos");
 
+        jButtonClientes.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jButtonClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/icones/clientes.png"))); // NOI18N
         jButtonClientes.setText("Clientes");
         jButtonClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,7 +50,14 @@ public class MenuPrincipal extends javax.swing.JPanel {
             }
         });
 
-        jButton8.setText("Funcionários");
+        jButtonFuncionarios.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jButtonFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/icones/funcionarios.png"))); // NOI18N
+        jButtonFuncionarios.setText("Funcionários");
+        jButtonFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFuncionariosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelPainelLayout = new javax.swing.GroupLayout(jPanelPainel);
         jPanelPainel.setLayout(jPanelPainelLayout);
@@ -56,10 +69,10 @@ public class MenuPrincipal extends javax.swing.JPanel {
                         .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(30, 30, 30))
                     .addGroup(jPanelPainelLayout.createSequentialGroup()
-                        .addComponent(jButtonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                        .addComponent(jButtonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(33, 33, 33)))
                 .addGroup(jPanelPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                    .addComponent(jButtonFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanelPainelLayout.setVerticalGroup(
@@ -67,7 +80,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
             .addGroup(jPanelPainelLayout.createSequentialGroup()
                 .addGroup(jPanelPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                    .addComponent(jButtonFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanelPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
@@ -102,13 +115,17 @@ public class MenuPrincipal extends javax.swing.JPanel {
         viewPrincipal.mudarPainelCentral("ConsultaClientes");
     }//GEN-LAST:event_jButtonClientesActionPerformed
 
+    private void jButtonFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFuncionariosActionPerformed
+        viewPrincipal.mudarPainelCentral("ConsultaFuncionarios");
+    }//GEN-LAST:event_jButtonFuncionariosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButtonClientes;
+    private javax.swing.JButton jButtonFuncionarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelPainel;
     // End of variables declaration//GEN-END:variables
