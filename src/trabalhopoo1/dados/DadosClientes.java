@@ -8,7 +8,7 @@ import trabalhopoo1.excecoes.EntradaInvalidaException;
  * Classe para armazenar e gerenciar os clientes
  */
 public class DadosClientes {
-    private static ArrayList<Cliente> clientes = new ArrayList<>();
+    private static final ArrayList<Cliente> clientes = new ArrayList<>();
 
     public static ArrayList<Cliente> getClientes() {
         return clientes;
@@ -73,7 +73,7 @@ public class DadosClientes {
      * Remove todos os clientes
      */
     public static void removerTodos() {
-        clientes = new ArrayList<Cliente>();
+        clientes.removeAll(clientes);
     }
     
     /**

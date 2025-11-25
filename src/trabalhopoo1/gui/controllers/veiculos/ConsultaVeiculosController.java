@@ -1,4 +1,4 @@
-package trabalhopoo1.gui.controllers.clientes;
+package trabalhopoo1.gui.controllers.veiculos;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,30 +9,29 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import trabalhopoo1.Main;
-import trabalhopoo1.dados.DadosClientes;
-import trabalhopoo1.entidades.Cliente;
+import trabalhopoo1.dados.DadosVeiculos;
+import trabalhopoo1.entidades.Veiculo;
 import trabalhopoo1.gui.beans.ListaConsulta;
 import trabalhopoo1.gui.views.ViewPrincipal;
 
 /**
- * Controlador da tela de Consulta de Clientes
+ * Controlador da tela de Consulta de Veículos
  */
-public class ConsultaClientesController {
+public class ConsultaVeiculosController {
     
     private ViewPrincipal viewPrincipal;
     private ListaConsulta lista;
-    private ArrayList<Cliente> clientesEncontrados;
+    private ArrayList<Veiculo> veiculosEncontrados;
     
-    public ConsultaClientesController(ViewPrincipal viewPrincipal) {
+    public ConsultaVeiculosController(ViewPrincipal viewPrincipal) {
         this.viewPrincipal = viewPrincipal;
-       
     }
     
     /**
-     * Aciona a tela de cadastro de clientes.
+     * Aciona a tela de cadastro de veículos.
      */
     public void adicionar() {
-        viewPrincipal.mudarPainelCentral("FormularioClientes");
+        viewPrincipal.mudarPainelCentral("FormularioVeiculos");
     }
     
     /**
@@ -46,24 +45,26 @@ public class ConsultaClientesController {
         painelResultados.removeAll();
         
         ArrayList<ArrayList<String>> linhas = new ArrayList<>();
-        clientesEncontrados = buscarClientes(chave,tipoBusca);
+        veiculosEncontrados = buscarVeiculos(chave,tipoBusca);
         
-        if(clientesEncontrados.size() == 0) {
+        if(veiculosEncontrados.size() == 0) {
             JOptionPane.showMessageDialog(painelResultados, "Nenhum dado encontrado!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
         
-        clientesEncontrados.forEach((cliente) -> {
+        veiculosEncontrados.forEach((veiculo) -> {
             ArrayList linha = new ArrayList(Arrays.asList(
-                cliente.getNome(),
-                cliente.getTelefone(),
-                cliente.getEmail(),
-                cliente.getCpf(),
-                cliente.getRg()
+                veiculo.getModelo(),
+                veiculo.getMarca(),
+                veiculo.getCor(),
+                Integer.toString(veiculo.getAno()),
+                Integer.toString(veiculo.getNumMarchas()),
+                Integer.toString(veiculo.getNumPortas()),
+                veiculo.getChassi()
             ));
             linhas.add(linha);
         });
         
-        ArrayList<String> colunas = new ArrayList<>(Arrays.asList("Nome","Telefone","E-mail","CPF","RG","Editar","Remover"));
+        ArrayList<String> colunas = new ArrayList<>(Arrays.asList("Modelo","Marca","Cor","Ano","Nº Marchas","Nº Portas","Chassi","Editar","Remover"));
         
         lista = new ListaConsulta(colunas,linhas, new ActionListener(){
             // Handler do botão editar
@@ -71,12 +72,11 @@ public class ConsultaClientesController {
             public void actionPerformed(ActionEvent e) {
                 JButton botao = (JButton) e.getSource();
                 int indice = Integer.parseInt(botao.getName());
-                System.out.println("Indice: "+indice);
                 
-                Main.getFormClientes().ativarEdicao(clientesEncontrados.get(indice));
-                Main.getConsClientes().reiniciar();
+                Main.getFormVeiculos().ativarEdicao(veiculosEncontrados.get(indice));
+                Main.getConsVeiculos().reiniciar();
                 
-                viewPrincipal.mudarPainelCentral("FormularioClientes");
+                viewPrincipal.mudarPainelCentral("FormularioVeiculos");
             }
         });
         
@@ -88,29 +88,29 @@ public class ConsultaClientesController {
     }
     
     /**
-     * Faz uma busca de clientes
+     * Faz uma busca de veículos
      * @param chave Chave de busca
      * @param tipoBusca Tipo de busca
-     * @return {@code ArrayList<Clientes>} com os clientes encontrados.
+     * @return {@code ArrayList<Veiculo>} com os veículos encontrados.
      */
-    public ArrayList<Cliente> buscarClientes(String chave, String tipoBusca) {
-        ArrayList<Cliente> clientes = new ArrayList<>();
+    public ArrayList<Veiculo> buscarVeiculos(String chave, String tipoBusca) {
+        ArrayList<Veiculo> veiculos = new ArrayList<>();
         
         switch(tipoBusca) {
-            case "Nome" -> {
-                for(int i = 0; i < DadosClientes.getClientes().size(); i++) {
-                    Cliente cliente = DadosClientes.getClientes().get(i);
+            case "Modelo" -> {
+                for(int i = 0; i < DadosVeiculos.getVeiculos().size(); i++) {
+                    Veiculo veiculo = DadosVeiculos.getVeiculos().get(i);
                     
-                    if(cliente.getNome().contains(chave))
-                        clientes.add(cliente);
+                    if(veiculo.getModelo().toUpperCase().contains(chave.toUpperCase()))
+                        veiculos.add(veiculo);
                 }
                 break;
             }
-            case "CPF" -> {
-                for(int i = 0; i < DadosClientes.getClientes().size(); i++) {
-                    Cliente cliente = DadosClientes.getClientes().get(i);
-                    if(cliente.getCpf().equals(chave)) {
-                        clientes.add(cliente);
+            case "Chassi" -> {
+                for(int i = 0; i < DadosVeiculos.getVeiculos().size(); i++) {
+                    Veiculo veiculo = DadosVeiculos.getVeiculos().get(i);
+                    if(veiculo.getChassi().toUpperCase().equals(chave.toUpperCase())) {
+                        veiculos.add(veiculo);
                         break;
                     }
                 }
@@ -118,23 +118,23 @@ public class ConsultaClientesController {
             }
         }
         
-        return clientes;
+        return veiculos;
     }
     
     /**
-     * Remove os clientes selecionados.
+     * Remove os veículos selecionados.
      * @param painelResultados painel de resultados
      */
     public void remover(JPanel painelResultados) {
         
         if(lista.getSelecionados().isEmpty()) {
-            JOptionPane.showMessageDialog(painelResultados, "Nenhum cliente selecionado para remover!", "Erro", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(painelResultados, "Nenhum veículo selecionado para remover!", "Erro", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
         int confirmacao = JOptionPane.showConfirmDialog(
                 painelResultados, 
-                "Deseja remover o(s) cliente(s) selecionado(s)?", "Remover cliente(s)", 
+                "Deseja remover o(s) veículo(s) selecionado(s)?", "Remover veículo(s)", 
                 JOptionPane.YES_NO_OPTION ,
                 JOptionPane.QUESTION_MESSAGE);
         
@@ -142,9 +142,9 @@ public class ConsultaClientesController {
             return;
         
         lista.getSelecionados().forEach((indice) -> {
-            Cliente cliente = clientesEncontrados.get(indice);
-            viewPrincipal.getArvore().getNoClientes().removerObjeto(cliente);
-            DadosClientes.remover(cliente);
+            Veiculo veiculo = veiculosEncontrados.get(indice);
+            viewPrincipal.getArvore().getNoVeiculos().removerObjeto(veiculo);
+            DadosVeiculos.remover(veiculo);
             
         });
         painelResultados.setVisible(false);

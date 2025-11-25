@@ -136,7 +136,7 @@ public class ConsultaFuncionariosController {
                 JOptionPane.YES_NO_OPTION ,
                 JOptionPane.QUESTION_MESSAGE);
         
-        if(confirmacao == JOptionPane.NO_OPTION || confirmacao == JOptionPane.CANCEL_OPTION)
+        if(confirmacao == JOptionPane.NO_OPTION || confirmacao == JOptionPane.CANCEL_OPTION || confirmacao == JOptionPane.CLOSED_OPTION)
             return;
         
         lista.getSelecionados().forEach((indice) -> {

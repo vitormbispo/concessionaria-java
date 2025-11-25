@@ -36,6 +36,6 @@ public class Venda {
     }
     
     public String nomeResumido() {
-        return String.format("%s | %s", cliente.getNome(),veiculo.getNome());
+        return String.format("%s | %s", cliente.getNome(),veiculo.getModelo());
     }
 }

@@ -37,7 +37,7 @@ public class NoClasse<T> extends DefaultMutableTreeNode{
         NoObjeto no = (NoObjeto) this.getChildAt(indice);
         no.setUserObject(novoObjeto);
         modelo.reload(raiz);
-    }
+        }
     
     /**
      * Retorna o índice de determinado objeto na árvore, ou -1 caso objeto não esteja presente.

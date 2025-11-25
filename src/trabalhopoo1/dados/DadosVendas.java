@@ -34,7 +34,7 @@ public class DadosVendas {
         ArrayList<Venda> encontradas = new ArrayList<>();
         for (Venda venda : vendas) {
             if (venda.getCliente().getCpf().equals(cpfCliente) && 
-                    (venda.getVeiculo().getNome().equalsIgnoreCase(nomeVeiculo) || 
+                    (venda.getVeiculo().getModelo().equalsIgnoreCase(nomeVeiculo) || 
                     venda.getVeiculo().getChassi().equalsIgnoreCase(nomeVeiculo))) {
                 encontradas.add(venda);
             }
@@ -131,7 +131,7 @@ public class DadosVendas {
      */
     public static boolean veiculoPossuiVenda(String nome) {
         for(Venda venda : vendas) {
-            if(venda.getVeiculo().getNome().equalsIgnoreCase(nome) || venda.getVeiculo().getChassi().equalsIgnoreCase(nome)) {
+            if(venda.getVeiculo().getModelo().equalsIgnoreCase(nome) || venda.getVeiculo().getChassi().equalsIgnoreCase(nome)) {
                 return true;
             }
         }

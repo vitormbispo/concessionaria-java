@@ -11,7 +11,7 @@ public class FormularioFuncionarios extends javax.swing.JPanel {
     private Funcionario funcionarioEditado;
     private boolean editando = false;
     /**
-     * Creates new form FormularioClientes
+     * Creates new form FormularioFuncionarios
      */
     public FormularioFuncionarios(FormularioFuncionariosController controller) {
         this.controller = controller;
@@ -254,7 +254,7 @@ public class FormularioFuncionarios extends javax.swing.JPanel {
         this.repaint();
         this.revalidate();
         this.editando = false;
-        jLabelCadastrar.setText("Cadastrar Cliente");
+        jLabelCadastrar.setText("Cadastrar Funcionário");
         jButtonCadastrar.setText("Cadastrar");
         
         jLabelNomeVal.setVisible(false);

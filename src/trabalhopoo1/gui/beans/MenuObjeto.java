@@ -91,8 +91,10 @@ public class MenuObjeto extends JPopupMenu{
                 Main.getFormFuncionarios().ativarEdicao(funcionario);
                 arvore.getViewPrincipal().mudarPainelCentral("FormularioFuncionarios");
             }
-            else if(objeto instanceof Veiculo)
-                DadosVeiculos.remover((Veiculo) objeto);
+            else if(objeto instanceof Veiculo veiculo) {
+                Main.getFormVeiculos().ativarEdicao(veiculo);
+                arvore.getViewPrincipal().mudarPainelCentral("FormularioVeiculos");
+            }
             else if(objeto instanceof Venda)
                 DadosVendas.remover((Venda) objeto);
         }

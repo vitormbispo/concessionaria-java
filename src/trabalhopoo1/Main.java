@@ -7,10 +7,14 @@ import trabalhopoo1.gui.views.ViewPrincipal;
 import trabalhopoo1.gui.controllers.clientes.FormularioClientesController;
 import trabalhopoo1.gui.controllers.funcionarios.ConsultaFuncionariosController;
 import trabalhopoo1.gui.controllers.funcionarios.FormularioFuncionariosController;
+import trabalhopoo1.gui.controllers.veiculos.ConsultaVeiculosController;
+import trabalhopoo1.gui.controllers.veiculos.FormularioVeiculosController;
 import trabalhopoo1.gui.views.clientes.ConsultaClientes;
 import trabalhopoo1.gui.views.clientes.FormularioClientes;
 import trabalhopoo1.gui.views.funcionarios.ConsultaFuncionarios;
 import trabalhopoo1.gui.views.funcionarios.FormularioFuncionarios;
+import trabalhopoo1.gui.views.veiculos.ConsultaVeiculos;
+import trabalhopoo1.gui.views.veiculos.FormularioVeiculos;
 
 // Autores: Bruno Yozo RA: 140076 | Vitor Bispo RA: 138475
 
@@ -21,17 +25,24 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static ViewPrincipal view;
     private static MenuPrincipal menuPrincipal;
+    
     private static FormularioClientes formClientes;
     private static ConsultaClientes consClientes;
     
     private static FormularioFuncionarios formFuncionarios;
     private static ConsultaFuncionarios consFuncionarios;
     
+    private static FormularioVeiculos formVeiculos;
+    private static ConsultaVeiculos consVeiculos;
+    
     private static FormularioClientesController formClientesController;
     private static ConsultaClientesController consClientesController;
     
     private static FormularioFuncionariosController formFuncionariosController;
     private static ConsultaFuncionariosController consFuncionariosController;
+    
+    private static FormularioVeiculosController formVeiculosController;
+    private static ConsultaVeiculosController consVeiculosController;
     
     public static void main(String[] args) {
         view = new ViewPrincipal();
@@ -42,6 +53,9 @@ public class Main {
         formFuncionariosController = new FormularioFuncionariosController(view);
         consFuncionariosController = new ConsultaFuncionariosController(view);
         
+        formVeiculosController = new FormularioVeiculosController(view);
+        consVeiculosController = new ConsultaVeiculosController(view);
+        
         menuPrincipal = new MenuPrincipal(view);
         formClientes = new FormularioClientes(formClientesController);
         consClientes = new ConsultaClientes(consClientesController);
@@ -49,14 +63,20 @@ public class Main {
         formFuncionarios = new FormularioFuncionarios(formFuncionariosController);
         consFuncionarios = new ConsultaFuncionarios(consFuncionariosController);
         
+        formVeiculos = new FormularioVeiculos(formVeiculosController);
+        consVeiculos = new ConsultaVeiculos(consVeiculosController);
+        
         formClientesController.setFormulario(formClientes);
         formFuncionariosController.setFormulario(formFuncionarios);
+        formVeiculosController.setFormulario(formVeiculos);
         
         view.adicionarPainelCentral(menuPrincipal, "MenuPrincipal");
         view.adicionarPainelCentral(formClientes, "FormularioClientes");
         view.adicionarPainelCentral(consClientes, "ConsultaClientes");
         view.adicionarPainelCentral(formFuncionarios, "FormularioFuncionarios");
         view.adicionarPainelCentral(consFuncionarios, "ConsultaFuncionarios");
+        view.adicionarPainelCentral(formVeiculos, "FormularioVeiculos");
+        view.adicionarPainelCentral(consVeiculos, "ConsultaVeiculos");
         
         view.mudarPainelCentral("MenuPrincipal");
     }
@@ -100,6 +120,22 @@ public class Main {
 
     public static ConsultaFuncionariosController getConsFuncionariosController() {
         return consFuncionariosController;
+    }
+
+    public static FormularioVeiculos getFormVeiculos() {
+        return formVeiculos;
+    }
+
+    public static ConsultaVeiculos getConsVeiculos() {
+        return consVeiculos;
+    }
+
+    public static FormularioVeiculosController getFormVeiculosController() {
+        return formVeiculosController;
+    }
+
+    public static ConsultaVeiculosController getConsVeiculosController() {
+        return consVeiculosController;
     }
     
     

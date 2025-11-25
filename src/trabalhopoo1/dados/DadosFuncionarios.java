@@ -6,7 +6,7 @@ import java.util.List;
 import trabalhopoo1.excecoes.EntradaInvalidaException;
 
 public class DadosFuncionarios {
-    private static List<Funcionario> funcionarios = new ArrayList<>();
+    private static final List<Funcionario> funcionarios = new ArrayList<>();
 
     public static List<Funcionario> getFuncionarios() {
         return funcionarios;
@@ -69,7 +69,7 @@ public class DadosFuncionarios {
      * Remove todos os funcionários da lista.
      */
     public static void removerTodos() {
-        funcionarios = new ArrayList();
+        funcionarios.removeAll(funcionarios);
     }
     
     /**
