@@ -6,17 +6,18 @@ import java.awt.CardLayout;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import trabalhopoo1.Main;
 
 /**
  * Janela princiapl do programa
  */
 public class ViewPrincipal extends JFrame{
-    private JPanel painelPrincipal;
-    private JPanel painelCentro;
-    private JPanel painelArvore;
-    private CardLayout layoutCentral;
+    private final JPanel painelPrincipal;
+    private final JPanel painelCentro;
+    private final JPanel painelArvore;
+    private final CardLayout layoutCentral;
     
-    private Arvore arvore;
+    private final Arvore arvore;
     
     public ViewPrincipal() {
         this.setTitle("Concessionária");
@@ -59,10 +60,9 @@ public class ViewPrincipal extends JFrame{
      */
     public void mudarPainelCentral(String nome) {
         this.layoutCentral.show(painelCentro, nome);
+        Main.setTelaAtual(nome);
     }
-    
-  
-    
+
     public Arvore getArvore() {
         return this.arvore;
     } 

@@ -23,7 +23,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanelPainel = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        jButtonVendas = new javax.swing.JButton();
         jButtonVeiculos = new javax.swing.JButton();
         jButtonClientes = new javax.swing.JButton();
         jButtonFuncionarios = new javax.swing.JButton();
@@ -33,13 +33,22 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setText("Menu Principal");
 
-        jButton5.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/gui/views/vendas.png"))); // NOI18N
-        jButton5.setText("Vendas");
+        jButtonVendas.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jButtonVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/icones/vendas.png"))); // NOI18N
+        jButtonVendas.setText("Vendas");
+        jButtonVendas.setMaximumSize(new java.awt.Dimension(250, 66));
+        jButtonVendas.setMinimumSize(new java.awt.Dimension(250, 66));
+        jButtonVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVendasActionPerformed(evt);
+            }
+        });
 
         jButtonVeiculos.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        jButtonVeiculos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/gui/views/veiculos.png"))); // NOI18N
+        jButtonVeiculos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/icones/veiculos.png"))); // NOI18N
         jButtonVeiculos.setText("Veículos");
+        jButtonVeiculos.setMaximumSize(new java.awt.Dimension(250, 66));
+        jButtonVeiculos.setMinimumSize(new java.awt.Dimension(250, 66));
         jButtonVeiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVeiculosActionPerformed(evt);
@@ -49,6 +58,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jButtonClientes.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         jButtonClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/icones/clientes.png"))); // NOI18N
         jButtonClientes.setText("Clientes");
+        jButtonClientes.setMaximumSize(new java.awt.Dimension(250, 66));
+        jButtonClientes.setMinimumSize(new java.awt.Dimension(250, 66));
         jButtonClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonClientesActionPerformed(evt);
@@ -58,6 +69,8 @@ public class MenuPrincipal extends javax.swing.JPanel {
         jButtonFuncionarios.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         jButtonFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabalhopoo1/icones/funcionarios.png"))); // NOI18N
         jButtonFuncionarios.setText("Funcionários");
+        jButtonFuncionarios.setMaximumSize(new java.awt.Dimension(250, 66));
+        jButtonFuncionarios.setMinimumSize(new java.awt.Dimension(250, 66));
         jButtonFuncionarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFuncionariosActionPerformed(evt);
@@ -70,15 +83,12 @@ public class MenuPrincipal extends javax.swing.JPanel {
             jPanelPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPainelLayout.createSequentialGroup()
                 .addGroup(jPanelPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPainelLayout.createSequentialGroup()
-                        .addComponent(jButtonVeiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(30, 30, 30))
-                    .addGroup(jPanelPainelLayout.createSequentialGroup()
-                        .addComponent(jButtonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(33, 33, 33)))
+                    .addComponent(jButtonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                    .addComponent(jButtonVeiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButtonFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                    .addComponent(jButtonVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)))
         );
         jPanelPainelLayout.setVerticalGroup(
             jPanelPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +99,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(jPanelPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonVeiculos, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButtonVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -128,13 +138,17 @@ public class MenuPrincipal extends javax.swing.JPanel {
         viewPrincipal.mudarPainelCentral("ConsultaVeiculos");
     }//GEN-LAST:event_jButtonVeiculosActionPerformed
 
+    private void jButtonVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVendasActionPerformed
+        viewPrincipal.mudarPainelCentral("ConsultaVendas");
+    }//GEN-LAST:event_jButtonVendasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonClientes;
     private javax.swing.JButton jButtonFuncionarios;
     private javax.swing.JButton jButtonVeiculos;
+    private javax.swing.JButton jButtonVendas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelPainel;
     // End of variables declaration//GEN-END:variables

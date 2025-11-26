@@ -84,8 +84,8 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
-            <StringItem index="0" value="Modelo"/>
-            <StringItem index="1" value="Chassi"/>
+            <StringItem index="0" value="Cliente"/>
+            <StringItem index="1" value="Funcion&#xe1;rio"/>
           </StringArray>
         </Property>
       </Properties>
@@ -106,7 +106,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Ve&#xed;culos"/>
+        <Property name="text" type="java.lang.String" value="Vendas"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanelResultado">

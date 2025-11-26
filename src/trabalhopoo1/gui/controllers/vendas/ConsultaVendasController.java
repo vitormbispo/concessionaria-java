@@ -1,6 +1,5 @@
 package trabalhopoo1.gui.controllers.vendas;
 
-import trabalhopoo1.gui.controllers.veiculos.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,21 +9,21 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import trabalhopoo1.Main;
-import trabalhopoo1.dados.DadosVeiculos;
-import trabalhopoo1.entidades.Veiculo;
+import trabalhopoo1.dados.DadosVendas;
+import trabalhopoo1.entidades.Venda;
 import trabalhopoo1.gui.beans.ListaConsulta;
 import trabalhopoo1.gui.views.ViewPrincipal;
 
 /**
- * Controlador da tela de Consulta de Veículos
+ * Controlador da tela de Consulta de Vendas
  */
-public class ConsultaVeiculosController {
+public class ConsultaVendasController {
     
     private ViewPrincipal viewPrincipal;
     private ListaConsulta lista;
-    private ArrayList<Veiculo> veiculosEncontrados;
+    private ArrayList<Venda> vendasEncontrados;
     
-    public ConsultaVeiculosController(ViewPrincipal viewPrincipal) {
+    public ConsultaVendasController(ViewPrincipal viewPrincipal) {
         this.viewPrincipal = viewPrincipal;
     }
     
@@ -32,7 +31,8 @@ public class ConsultaVeiculosController {
      * Aciona a tela de cadastro de veículos.
      */
     public void adicionar() {
-        viewPrincipal.mudarPainelCentral("FormularioVeiculos");
+        Main.getFormVendasController().atualizarCaixas();
+        viewPrincipal.mudarPainelCentral("FormularioVendas");
     }
     
     /**
@@ -46,26 +46,24 @@ public class ConsultaVeiculosController {
         painelResultados.removeAll();
         
         ArrayList<ArrayList<String>> linhas = new ArrayList<>();
-        veiculosEncontrados = buscarVeiculos(chave,tipoBusca);
+        vendasEncontrados = buscarVendas(chave,tipoBusca);
         
-        if(veiculosEncontrados.size() == 0) {
+        if(vendasEncontrados.isEmpty()) {
             JOptionPane.showMessageDialog(painelResultados, "Nenhum dado encontrado!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
         
-        veiculosEncontrados.forEach((veiculo) -> {
+        vendasEncontrados.forEach((venda) -> {
             ArrayList linha = new ArrayList(Arrays.asList(
-                veiculo.getModelo(),
-                veiculo.getMarca(),
-                veiculo.getCor(),
-                Integer.toString(veiculo.getAno()),
-                Integer.toString(veiculo.getNumMarchas()),
-                Integer.toString(veiculo.getNumPortas()),
-                veiculo.getChassi()
+                venda.getCliente().getNome(),
+                venda.getFuncionario().getNome(),
+                venda.getVeiculo().toString(),
+                venda.getData().toString(),
+                Double.toString(venda.getValor())
             ));
             linhas.add(linha);
         });
         
-        ArrayList<String> colunas = new ArrayList<>(Arrays.asList("Modelo","Marca","Cor","Ano","Nº Marchas","Nº Portas","Chassi","Editar","Remover"));
+        ArrayList<String> colunas = new ArrayList<>(Arrays.asList("Cliente","Funcionário","Veículo","Data","Valor","Editar","Remover"));
         
         lista = new ListaConsulta(colunas,linhas, new ActionListener(){
             // Handler do botão editar
@@ -74,10 +72,10 @@ public class ConsultaVeiculosController {
                 JButton botao = (JButton) e.getSource();
                 int indice = Integer.parseInt(botao.getName());
                 
-                Main.getFormVeiculos().ativarEdicao(veiculosEncontrados.get(indice));
-                Main.getConsVeiculos().reiniciar();
+                Main.getFormVendas().ativarEdicao(vendasEncontrados.get(indice));
+                Main.getConsVendas().reiniciar();
                 
-                viewPrincipal.mudarPainelCentral("FormularioVeiculos");
+                viewPrincipal.mudarPainelCentral("FormularioVendas");
             }
         });
         
@@ -89,29 +87,29 @@ public class ConsultaVeiculosController {
     }
     
     /**
-     * Faz uma busca de veículos
+     * Faz uma busca de venda
      * @param chave Chave de busca
      * @param tipoBusca Tipo de busca
-     * @return {@code ArrayList<Veiculo>} com os veículos encontrados.
+     * @return {@code ArrayList<Venda>} com as vendas encontrados.
      */
-    public ArrayList<Veiculo> buscarVeiculos(String chave, String tipoBusca) {
-        ArrayList<Veiculo> veiculos = new ArrayList<>();
+    public ArrayList<Venda> buscarVendas(String chave, String tipoBusca) {
+        ArrayList<Venda> vendas = new ArrayList<>();
         
         switch(tipoBusca) {
-            case "Modelo" -> {
-                for(int i = 0; i < DadosVeiculos.getVeiculos().size(); i++) {
-                    Veiculo veiculo = DadosVeiculos.getVeiculos().get(i);
+            case "Cliente" -> {
+                for(int i = 0; i < DadosVendas.getVendas().size(); i++) {
+                    Venda venda = DadosVendas.getVendas().get(i);
                     
-                    if(veiculo.getModelo().toUpperCase().contains(chave.toUpperCase()))
-                        veiculos.add(veiculo);
+                    if(venda.getCliente().getCpf().contains(chave))
+                        vendas.add(venda);
                 }
                 break;
             }
-            case "Chassi" -> {
-                for(int i = 0; i < DadosVeiculos.getVeiculos().size(); i++) {
-                    Veiculo veiculo = DadosVeiculos.getVeiculos().get(i);
-                    if(veiculo.getChassi().toUpperCase().equals(chave.toUpperCase())) {
-                        veiculos.add(veiculo);
+            case "Funcionário" -> {
+                for(int i = 0; i < DadosVendas.getVendas().size(); i++) {
+                    Venda venda = DadosVendas.getVendas().get(i);
+                    if(Long.toString(venda.getFuncionario().getNumeroMatricula()).equals(chave)) {
+                        vendas.add(venda);
                         break;
                     }
                 }
@@ -119,7 +117,7 @@ public class ConsultaVeiculosController {
             }
         }
         
-        return veiculos;
+        return vendas;
     }
     
     /**
@@ -143,9 +141,9 @@ public class ConsultaVeiculosController {
             return;
         
         lista.getSelecionados().forEach((indice) -> {
-            Veiculo veiculo = veiculosEncontrados.get(indice);
-            viewPrincipal.getArvore().getNoVeiculos().removerObjeto(veiculo);
-            DadosVeiculos.remover(veiculo);
+            Venda venda = vendasEncontrados.get(indice);
+            viewPrincipal.getArvore().getNoVendas().removerObjeto(venda);
+            DadosVendas.remover(venda);
             
         });
         painelResultados.setVisible(false);

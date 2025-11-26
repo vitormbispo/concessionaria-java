@@ -31,8 +31,8 @@ public class Venda {
 
     @Override
     public String toString() {
-        return String.format("Cliente: %s | Veículo: %s | Funcionário:%s | Valor: R$ %.2f | Data: %s | ",
-                 cliente.getNome(), veiculo.nomeComposto(), funcionario.getNome(), valor, data.toString());
+        return String.format("%s | %s |",
+                 cliente.getNome(), veiculo.nomeComposto());
     }
     
     public String nomeResumido() {

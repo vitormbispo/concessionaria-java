@@ -27,7 +27,7 @@ public class DadosFuncionarios {
      * @param matricula Nº dr matrrícula do funcionário a consultar
      * @return O objeto do funcionário consultado ou {@code null} caso não seja encontrado.
      */
-    public static Funcionario consultar(int matricula) {
+    public static Funcionario consultar(long matricula) {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getNumeroMatricula() == matricula) {
                 return funcionario;

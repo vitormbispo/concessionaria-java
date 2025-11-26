@@ -58,14 +58,26 @@ public class MenuObjeto extends JPopupMenu{
             Object objeto = no.getUserObject();
             no.getClasse().removerObjeto(objeto);
             
-            if(objeto instanceof Cliente)
-                DadosClientes.remover((Cliente) objeto);
-            else if(objeto instanceof Funcionario)
-                DadosFuncionarios.remover((Funcionario) objeto);
-            else if(objeto instanceof Veiculo)
-                DadosVeiculos.remover((Veiculo) objeto);
-            else if(objeto instanceof Venda)
-                DadosVendas.remover((Venda) objeto);
+            if(objeto instanceof Cliente cliente) {
+                DadosClientes.remover(cliente);
+                if(Main.getTelaAtual().equals("FormularioVendas"))
+                    Main.getFormVendasController().atualizarCaixaClientes();
+            }
+                 
+            else if(objeto instanceof Funcionario funcionario) {
+                DadosFuncionarios.remover(funcionario);
+                if(Main.getTelaAtual().equals("FormularioVendas"))
+                    Main.getFormVendasController().atualizarCaixaFuncionarios();
+            }
+                
+            else if(objeto instanceof Veiculo veiculo) {
+                DadosVeiculos.remover(veiculo);
+                if(Main.getTelaAtual().equals("FormularioVendas"))
+                    Main.getFormVendasController().atualizarCaixaVeiculos();
+            }
+                
+            else if(objeto instanceof Venda venda)
+                DadosVendas.remover(venda);
         }
     }
     

@@ -40,7 +40,7 @@ public class Veiculo {
     public void setChassi(String chassi) { this.chassi = chassi; }
     
     public String nomeComposto() {
-        return String.format("%s-%s-%s-%s",modelo,cor,ano,chassi);
+        return String.format("%s-%s",marca,modelo);
     }
     
     @Override

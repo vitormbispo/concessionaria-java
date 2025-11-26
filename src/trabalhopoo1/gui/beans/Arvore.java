@@ -9,6 +9,7 @@ import javax.swing.tree.DefaultTreeModel;
 import trabalhopoo1.entidades.Cliente;
 import trabalhopoo1.entidades.Funcionario;
 import trabalhopoo1.entidades.Veiculo;
+import trabalhopoo1.entidades.Venda;
 import trabalhopoo1.gui.views.ViewPrincipal;
 
 /**
@@ -22,7 +23,7 @@ public class Arvore extends JTree {
     private final NoClasse<Cliente> noClientes;
     private final NoClasse<Funcionario> noFuncionarios;
     private final NoClasse<Veiculo> noVeiculos;
-    private final DefaultMutableTreeNode noVendas;
+    private final NoClasse<Venda> noVendas;
     private final ViewPrincipal viewPrincipal;
     
     public Arvore(ViewPrincipal viewPrincipal) {
@@ -35,7 +36,7 @@ public class Arvore extends JTree {
         noClientes = new NoClasse<>("Clientes",modelo,raiz);
         noFuncionarios = new NoClasse<>("Funcionários",modelo,raiz);
         noVeiculos = new NoClasse<>("Veículos",modelo,raiz);
-        noVendas = new DefaultMutableTreeNode("Vendas");
+        noVendas = new NoClasse<>("Vendas",modelo,raiz);
         
         raiz.add(noClientes);
         raiz.add(noFuncionarios);
@@ -93,7 +94,7 @@ public class Arvore extends JTree {
         return noVeiculos;
     }
 
-    public DefaultMutableTreeNode getNoVendas() {
+    public NoClasse<Venda> getNoVendas() {
         return noVendas;
     }
 

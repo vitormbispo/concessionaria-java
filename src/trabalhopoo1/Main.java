@@ -9,12 +9,16 @@ import trabalhopoo1.gui.controllers.funcionarios.ConsultaFuncionariosController;
 import trabalhopoo1.gui.controllers.funcionarios.FormularioFuncionariosController;
 import trabalhopoo1.gui.controllers.veiculos.ConsultaVeiculosController;
 import trabalhopoo1.gui.controllers.veiculos.FormularioVeiculosController;
+import trabalhopoo1.gui.controllers.vendas.ConsultaVendasController;
+import trabalhopoo1.gui.controllers.vendas.FormularioVendasController;
 import trabalhopoo1.gui.views.clientes.ConsultaClientes;
 import trabalhopoo1.gui.views.clientes.FormularioClientes;
 import trabalhopoo1.gui.views.funcionarios.ConsultaFuncionarios;
 import trabalhopoo1.gui.views.funcionarios.FormularioFuncionarios;
 import trabalhopoo1.gui.views.veiculos.ConsultaVeiculos;
 import trabalhopoo1.gui.views.veiculos.FormularioVeiculos;
+import trabalhopoo1.gui.views.vendas.ConsultaVendas;
+import trabalhopoo1.gui.views.vendas.FormularioVendas;
 
 // Autores: Bruno Yozo RA: 140076 | Vitor Bispo RA: 138475
 
@@ -35,6 +39,9 @@ public class Main {
     private static FormularioVeiculos formVeiculos;
     private static ConsultaVeiculos consVeiculos;
     
+    private static FormularioVendas formVendas;
+    private static ConsultaVendas consVendas;
+    
     private static FormularioClientesController formClientesController;
     private static ConsultaClientesController consClientesController;
     
@@ -43,6 +50,11 @@ public class Main {
     
     private static FormularioVeiculosController formVeiculosController;
     private static ConsultaVeiculosController consVeiculosController;
+    
+    private static FormularioVendasController formVendasController;
+    private static ConsultaVendasController consVendasController;
+    
+    private static String telaAtual;
     
     public static void main(String[] args) {
         view = new ViewPrincipal();
@@ -56,7 +68,11 @@ public class Main {
         formVeiculosController = new FormularioVeiculosController(view);
         consVeiculosController = new ConsultaVeiculosController(view);
         
+        formVendasController = new FormularioVendasController(view);
+        consVendasController = new ConsultaVendasController(view);
+        
         menuPrincipal = new MenuPrincipal(view);
+        
         formClientes = new FormularioClientes(formClientesController);
         consClientes = new ConsultaClientes(consClientesController);
         
@@ -66,9 +82,13 @@ public class Main {
         formVeiculos = new FormularioVeiculos(formVeiculosController);
         consVeiculos = new ConsultaVeiculos(consVeiculosController);
         
+        formVendas = new FormularioVendas(formVendasController);
+        consVendas = new ConsultaVendas(consVendasController);
+        
         formClientesController.setFormulario(formClientes);
         formFuncionariosController.setFormulario(formFuncionarios);
         formVeiculosController.setFormulario(formVeiculos);
+        formVendasController.setFormulario(formVendas);
         
         view.adicionarPainelCentral(menuPrincipal, "MenuPrincipal");
         view.adicionarPainelCentral(formClientes, "FormularioClientes");
@@ -77,6 +97,9 @@ public class Main {
         view.adicionarPainelCentral(consFuncionarios, "ConsultaFuncionarios");
         view.adicionarPainelCentral(formVeiculos, "FormularioVeiculos");
         view.adicionarPainelCentral(consVeiculos, "ConsultaVeiculos");
+        view.adicionarPainelCentral(formVendas, "FormularioVendas");
+        view.adicionarPainelCentral(consVendas, "ConsultaVendas");
+        
         
         view.mudarPainelCentral("MenuPrincipal");
     }
@@ -137,6 +160,28 @@ public class Main {
     public static ConsultaVeiculosController getConsVeiculosController() {
         return consVeiculosController;
     }
-    
-    
+
+    public static FormularioVendas getFormVendas() {
+        return formVendas;
+    }
+
+    public static ConsultaVendas getConsVendas() {
+        return consVendas;
+    }
+
+    public static FormularioVendasController getFormVendasController() {
+        return formVendasController;
+    }
+
+    public static ConsultaVendasController getConsVendasController() {
+        return consVendasController;
+    }
+
+    public static String getTelaAtual() {
+        return telaAtual;
+    }
+
+    public static void setTelaAtual(String telaAtual) {
+        Main.telaAtual = telaAtual;
+    }
 }

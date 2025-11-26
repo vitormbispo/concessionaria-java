@@ -1,12 +1,14 @@
 package trabalhopoo1.dados;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import trabalhopoo1.entidades.Funcionario;
 import trabalhopoo1.entidades.Venda;
 import trabalhopoo1.entidades.Veiculo;
 import trabalhopoo1.entidades.Cliente;
 import java.util.ArrayList;
 import java.util.List;
+import trabalhopoo1.excecoes.EntradaInvalidaException;
 
 public class DadosVendas {
     private static final List<Venda> vendas = new ArrayList<>();
@@ -74,6 +76,13 @@ public class DadosVendas {
             System.out.println("Venda não encontrada!");
     }
     
+    /**
+     * Remove todas as vendas cadastradas
+     */
+    public static void removerTodos() {
+        vendas.removeAll(vendas);
+    }
+    
      /**
      * Verifica se não há cadastros de vendas
      * @return {@code true} se nenhuma venda foi cadastrada.
@@ -136,6 +145,86 @@ public class DadosVendas {
             }
         }
         return false;
+    }
+    
+    // Validações
+    
+    public static boolean validarCliente(String cpf) {
+        boolean valido = false;
+        
+        if(cpf.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else if(!DadosClientes.cpfExiste(cpf))
+            throw new EntradaInvalidaException("Nenhum cliente com esse CPF!");
+        else
+            valido = true;
+        
+        return valido;
+    }
+    
+    
+    public static boolean validarFuncionario(String numMatricula) {
+        boolean valido = false;
+        
+        if(numMatricula.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        try{
+            long convertido = Long.parseLong(numMatricula);
+            if(!DadosFuncionarios.matriculaExiste(convertido))
+                throw new EntradaInvalidaException("Nenhum funcionário com essa matrícula!");
+            else
+                valido = true;
+        } catch(NumberFormatException e) {
+            throw new EntradaInvalidaException("Nº de matrícula inválido!");
+        }
+        
+        return valido;
+    }
+    
+    public static boolean validarVeiculo(String chassi) {
+        boolean valido = false;
+        
+        if(chassi.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else if(!DadosVeiculos.chassiExiste(chassi))
+            throw new EntradaInvalidaException("Nenhum veículo com esse chassi!");
+        else
+            valido = true;
+        
+        return valido;
+    }
+    
+    public static boolean validarData(String data) {
+        boolean valido = false;
+        
+        if(data.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        try {
+            if(LocalDate.parse(data) != null)
+                valido = true;
+        } catch (DateTimeParseException e) {
+            throw new EntradaInvalidaException("Formato inválido! (AAAA-MM-DD)");
+        }
+        
+        return valido;
+    }
+    
+    public static boolean validarValor(String valor) {
+        boolean valido = false;
+        
+        if(valor.isBlank())
+            throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        try {
+            double convertido = Double.parseDouble(valor);
+            if(convertido < 0)
+                throw new EntradaInvalidaException("Valor inválido!");
+            else
+                valido = true;
+        } catch (NumberFormatException e) {
+            throw new EntradaInvalidaException("Deve ser um número! (Ex.: 12,34)");
+        }
+        
+        return valido;
     }
     
     /**

@@ -27,22 +27,18 @@ public class DadosVeiculos {
     }
     
     /**
-     * Consulta por um veículo a partir do seu nome ou chassi
-     * @param nome Nome ou chassi do veículo
+     * Consulta por um veículo a partir do seu chassi
+     * @param chassi Chassi do veículo
      * @return Lista de cadastros encontrados
      */
-    public static ArrayList<Veiculo> consultar(String nome) {  
-        ArrayList<Veiculo> encontrados = new ArrayList<>();
+    public static Veiculo consultar(String chassi) {  
         for (Veiculo veiculo : veiculos) {
-            if (veiculo.getModelo().equalsIgnoreCase(nome) || veiculo.getChassi().equalsIgnoreCase(nome)) {
-                encontrados.add(veiculo);
+            if (veiculo.getChassi().equalsIgnoreCase(chassi)) {
+                return veiculo;
             }
         }
-        if(encontrados.isEmpty()) {
-            System.out.println("Nenhum veículo encontrado.");
-        }
 
-        return encontrados;
+        return null;
     }
     
     /**

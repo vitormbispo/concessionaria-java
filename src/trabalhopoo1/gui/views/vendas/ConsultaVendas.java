@@ -1,14 +1,14 @@
 package trabalhopoo1.gui.views.vendas;
 
-import trabalhopoo1.gui.views.veiculos.*;
 import trabalhopoo1.gui.controllers.veiculos.ConsultaVeiculosController;
+import trabalhopoo1.gui.controllers.vendas.ConsultaVendasController;
 
-public class ConsultaVeiculos extends javax.swing.JPanel {
-    public ConsultaVeiculosController controller;
+public class ConsultaVendas extends javax.swing.JPanel {
+    public ConsultaVendasController controller;
     /**
-     * Creates new form ConsultaVeiculos
+     * Creates new form ConsultaVendas
      */
-    public ConsultaVeiculos(ConsultaVeiculosController controller) {
+    public ConsultaVendas(ConsultaVendasController controller) {
         this.controller = controller;
         initComponents();
         jPanelResultado.setVisible(false);
@@ -35,7 +35,7 @@ public class ConsultaVeiculos extends javax.swing.JPanel {
 
         jTextFieldBusca.setToolTipText("Insira sua consulta");
 
-        jComboBoxTipoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo", "Chassi" }));
+        jComboBoxTipoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Funcionário" }));
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -45,7 +45,7 @@ public class ConsultaVeiculos extends javax.swing.JPanel {
         });
 
         jLabelVeiculos.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabelVeiculos.setText("Veículos");
+        jLabelVeiculos.setText("Vendas");
 
         jPanelResultado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanelResultado.setMaximumSize(new java.awt.Dimension(700, 32767));

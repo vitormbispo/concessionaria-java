@@ -85,7 +85,7 @@ public class FormularioVeiculosController {
         
         if(modelo.isBlank()) {
             valido = false;
-            formulario.getjLabelModeloVal().setText("O campo não pode ser vazio!");
+            formulario.getjLabelModeloVal().setText("O campo não pode estar vazio!");
             formulario.getjLabelModeloVal().setVisible(true);
         } else {
             formulario.getjLabelModeloVal().setVisible(false);
@@ -99,7 +99,7 @@ public class FormularioVeiculosController {
         
         if(cor.isBlank()) {
             valido = false;
-            formulario.getjLabelCorVal().setText("O campo não pode ser vazio!");
+            formulario.getjLabelCorVal().setText("O campo não pode estar vazio!");
             formulario.getjLabelCorVal().setVisible(true);
         } else {
             formulario.getjLabelCorVal().setVisible(false);
@@ -113,7 +113,7 @@ public class FormularioVeiculosController {
         
         if(cor.isBlank()) {
             valido = false;
-            formulario.getjLabelMarcaVal().setText("O campo não pode ser vazio!");
+            formulario.getjLabelMarcaVal().setText("O campo não pode estar vazio!");
             formulario.getjLabelMarcaVal().setVisible(true);
         } else {
             formulario.getjLabelMarcaVal().setVisible(false);
