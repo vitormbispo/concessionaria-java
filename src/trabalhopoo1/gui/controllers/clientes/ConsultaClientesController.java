@@ -127,7 +127,7 @@ public class ConsultaClientesController {
      */
     public void remover(JPanel painelResultados) {
         
-        if(lista.getSelecionados().isEmpty()) {
+        if(lista == null || lista.getSelecionados().isEmpty()) {
             JOptionPane.showMessageDialog(painelResultados, "Nenhum cliente selecionado para remover!", "Erro", JOptionPane.WARNING_MESSAGE);
             return;
         }

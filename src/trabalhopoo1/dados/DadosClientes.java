@@ -122,7 +122,7 @@ public class DadosClientes {
         else if(emailExiste(email))
            throw new EntradaInvalidaException("Esse e-mail já está cadastrado!");
         else if (!email.contains("@") || email.length() < 5)
-            throw new EntradaInvalidaException("E-mail inválido!");
+            throw new EntradaInvalidaException("E-mail inválido! (Ex.: exemplo@email)");
         else
             valido = true;
         

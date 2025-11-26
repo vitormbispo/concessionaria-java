@@ -73,6 +73,7 @@ public class ConsultaVendasController {
                 int indice = Integer.parseInt(botao.getName());
                 
                 Main.getFormVendas().ativarEdicao(vendasEncontrados.get(indice));
+                Main.getFormVendasController().atualizarCaixas();
                 Main.getConsVendas().reiniciar();
                 
                 viewPrincipal.mudarPainelCentral("FormularioVendas");
@@ -126,7 +127,7 @@ public class ConsultaVendasController {
      */
     public void remover(JPanel painelResultados) {
         
-        if(lista.getSelecionados().isEmpty()) {
+        if(lista == null || lista.getSelecionados().isEmpty()) {
             JOptionPane.showMessageDialog(painelResultados, "Nenhum veículo selecionado para remover!", "Erro", JOptionPane.WARNING_MESSAGE);
             return;
         }

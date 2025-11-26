@@ -221,7 +221,7 @@ public class DadosVendas {
             else
                 valido = true;
         } catch (NumberFormatException e) {
-            throw new EntradaInvalidaException("Deve ser um número! (Ex.: 12,34)");
+            throw new EntradaInvalidaException("Deve ser um número! (Ex.: 12.34)");
         }
         
         return valido;

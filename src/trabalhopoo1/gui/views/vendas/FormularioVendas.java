@@ -161,10 +161,20 @@ public class FormularioVendas extends javax.swing.JPanel {
         jComboBoxFuncionarios.setBackground(new java.awt.Color(240, 240, 240));
         jComboBoxFuncionarios.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxFuncionarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFuncionarios.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxFuncionariosItemStateChanged(evt);
+            }
+        });
 
         jComboBoxVeiculos.setBackground(new java.awt.Color(240, 240, 240));
         jComboBoxVeiculos.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxVeiculos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxVeiculos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxVeiculosItemStateChanged(evt);
+            }
+        });
 
         jLabelClienteVal.setForeground(new java.awt.Color(255, 0, 51));
         jLabelClienteVal.setText("Inválido!");
@@ -306,6 +316,16 @@ public class FormularioVendas extends javax.swing.JPanel {
     private void jComboBoxClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClientesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxClientesActionPerformed
+
+    private void jComboBoxFuncionariosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxFuncionariosItemStateChanged
+        if(evt.getStateChange() == ItemEvent.SELECTED)
+            controller.selecionarFuncionario(jComboBoxFuncionarios.getSelectedIndex());
+    }//GEN-LAST:event_jComboBoxFuncionariosItemStateChanged
+
+    private void jComboBoxVeiculosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxVeiculosItemStateChanged
+        if(evt.getStateChange() == ItemEvent.SELECTED)
+            controller.selecionarVeiculo(jComboBoxVeiculos.getSelectedIndex());
+    }//GEN-LAST:event_jComboBoxVeiculosItemStateChanged
     
     /**
      * Reinicia os elementos da tela
