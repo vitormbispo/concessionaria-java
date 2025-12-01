@@ -6,6 +6,7 @@ import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import trabalhopoo1.dados.DadosClientes;
 import trabalhopoo1.entidades.Cliente;
 import trabalhopoo1.entidades.Funcionario;
 import trabalhopoo1.entidades.Veiculo;
@@ -38,6 +39,8 @@ public class Arvore extends JTree {
         noVeiculos = new NoClasse<>("Veículos",modelo,raiz);
         noVendas = new NoClasse<>("Vendas",modelo,raiz);
         
+        iniciarNos();
+        
         raiz.add(noClientes);
         raiz.add(noFuncionarios);
         raiz.add(noVeiculos);
@@ -47,6 +50,11 @@ public class Arvore extends JTree {
         configurarAcoes();
     }
     
+    private void iniciarNos() {
+        DadosClientes.consultarTodos().forEach((cliente) -> {
+           noClientes.adicionarObjeto(cliente);
+        });
+    }
     /**
      * Configura os eventos do mouse e menus de contexto.
      */

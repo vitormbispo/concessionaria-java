@@ -1,27 +1,51 @@
 package trabalhopoo1.dados;
 
 import trabalhopoo1.entidades.Cliente;
-import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import trabalhopoo1.excecoes.EntradaInvalidaException;
+import static trabalhopoo1.dados.BancoDados.em;
 
 /**
  * Classe para armazenar e gerenciar os clientes
  */
-public class DadosClientes {
-    private static final ArrayList<Cliente> clientes = new ArrayList<>();
-
-    public static ArrayList<Cliente> getClientes() {
-        return clientes;
-    }
-        
+public class DadosClientes {  
     /**
      * Cadastra um novo cliente.
      * @param cliente Cliente a ser cadastrado
      */
     public static void cadastrar(Cliente cliente) {
-        clientes.add(cliente);
-        DadosVendas.redirecionarReferencias(cliente, cliente);
-        System.out.println("Cliente cadastrado com sucesso!");
+        em.getTransaction().begin();
+        em.persist(cliente);
+        em.getTransaction().commit();
+    }
+    
+    
+    /**
+     * Procura por todos os clientes cadastrados
+     * @return Uma lista com todos os clientes.
+     */
+    public static List<Cliente> consultarTodos() {
+        Query query = em.createQuery("SELECT c FROM Cliente c");
+        return query.getResultList();
+    }
+    
+    /**
+     * Procura por um cliente a partir do seu ID
+     * @param id ID do cliente a consultar
+     * @return O objeto do cliente consultado ou {@code null} caso não seja encontrado.
+     */
+    public static Cliente consultarId(long id) {
+        Query query = em.createQuery("SELECT c FROM Cliente c WHERE c.id LIKE :idCliente");
+        query.setParameter("idCliente", Long.toString(id));
+        
+        try {
+            Cliente resultado = (Cliente) query.getSingleResult();
+            return resultado;
+        } catch(NoResultException e) {
+            return null;
+        }
     }
     
     /**
@@ -29,16 +53,31 @@ public class DadosClientes {
      * @param cpf CPF do cliente a consultar
      * @return O objeto do cliente consultado ou {@code null} caso não seja encontrado.
      */
-    public static Cliente consultar(String cpf) {
-        for(Cliente cliente : clientes) {
-            if(cliente.getCpf().equals(cpf)) {
-                return cliente;
-            }
-        }
+    public static Cliente consultarCpf(String cpf) {
+        Query query = em.createQuery("SELECT c FROM Cliente c WHERE c.cpf LIKE :cpfCliente");
+        query.setParameter("cpfCliente", cpf);
         
-        System.out.println("/!\\Cliente não encontrado!");
-        return null;
+        try {
+            Cliente resultado = (Cliente) query.getSingleResult();
+            return resultado;
+        } catch(NoResultException e) {
+            return null;
+        }
     }
+    
+    /**
+     * Procura clientes a partir do seu nome
+     * @param nome Nome do cliente a consultar
+     * @return Uma lista de clientes encontrados pelo nome.
+     */
+    public static List<Cliente> consultarNome(String nome) {
+        Query query = em.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nomeCliente");
+        query.setParameter("nomeCliente", "%"+nome+"%");
+        
+        List<Cliente> resultado = query.getResultList();
+        return resultado;
+    }
+    
     
     /**
      * Altera os dados de um cliente
@@ -55,7 +94,10 @@ public class DadosClientes {
         cliente.setEmail(email);
         cliente.setRg(rg);
         cliente.setCpf(cpf);
-        DadosVendas.redirecionarReferencias(cliente, cliente);
+        
+        em.getTransaction().begin();
+        em.merge(cliente);
+        em.getTransaction().commit();
     }
     
     /**
@@ -63,17 +105,18 @@ public class DadosClientes {
      * @param cliente Cliente a ser removido
      */
     public static void remover(Cliente cliente) {
-        if(clientes.contains(cliente)) {
-            DadosVendas.redirecionarReferencias(cliente,cliente.clone());
-            clientes.remove(cliente);
-        }
+        em.getTransaction().begin();
+        em.remove(cliente);
+        em.getTransaction().commit();
     }
     
     /**
      * Remove todos os clientes
      */
     public static void removerTodos() {
-        clientes.removeAll(clientes);
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Cliente").executeUpdate();
+        em.getTransaction().commit();
     }
     
     /**
@@ -81,7 +124,9 @@ public class DadosClientes {
      * @return {@code true} se não hover nenhum cliente cadastrado.
      */
     public static boolean semCadastros() {
-        return clientes.isEmpty();
+        Query query = em.createQuery("SELECT COUNT(c) FROM Cliente c");
+        boolean vazio = (long)query.getSingleResult() == 0;
+        return vazio;
     }
     
     // Validações
@@ -202,11 +247,10 @@ public class DadosClientes {
      * @return {@code true} se o CPF já está cadastrado.
      */
     public static boolean cpfExiste(String cpf) {
-       for(int i = 0; i < clientes.size();i++) {
-           if(clientes.get(i).getCpf().equals(cpf))
-               return true;
-       }
-       return false;
+       Query query = em.createQuery("SELECT COUNT(c) FROM Cliente c WHERE c.cpf LIKE :cpfCliente");
+       query.setParameter("cpfCliente",cpf);
+       boolean existe = (long)query.getSingleResult() != 0;
+       return existe;
     }
     
     /**
@@ -215,11 +259,10 @@ public class DadosClientes {
      * @return {@code true} se o RG já está cadastrado.
      */
     public static boolean rgExiste(String rg) {
-       for(int i = 0; i < clientes.size();i++) {
-           if(clientes.get(i).getRg().equals(rg))
-               return true;
-       }
-       return false;
+       Query query = em.createQuery("SELECT COUNT(c) FROM Cliente c WHERE c.rg LIKE :rgCliente");
+       query.setParameter("rgCliente",rg);
+       boolean existe = (long)query.getSingleResult() != 0;
+       return existe;
     }
     
      /**
@@ -228,10 +271,9 @@ public class DadosClientes {
      * @return {@code true} se o email já está cadastrado.
      */
     public static boolean emailExiste(String email) {
-       for(int i = 0; i < clientes.size();i++) {
-           if(clientes.get(i).getEmail().equals(email))
-               return true;
-       }
-       return false;
+       Query query = em.createQuery("SELECT COUNT(c) FROM Cliente c WHERE c.rg LIKE :emailCliente");
+       query.setParameter("emailCliente",email);
+       boolean existe = (long)query.getSingleResult() != 0;
+       return existe;
     }
 }

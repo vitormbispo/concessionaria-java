@@ -36,7 +36,7 @@ public class FormularioVendasController {
         Venda venda = new Venda(
                 LocalDate.parse(data, DateTimeFormatter.ISO_LOCAL_DATE),
                 Double.parseDouble(valor),
-                DadosClientes.consultar(cliente),
+                DadosClientes.consultarCpf(cliente),
                 DadosFuncionarios.consultar(Long.parseLong(funcionario)),
                 DadosVeiculos.consultar(veiculo));
                 
@@ -78,7 +78,7 @@ public class FormularioVendasController {
         Venda novaVenda = new Venda(
                 LocalDate.parse(data, DateTimeFormatter.ISO_LOCAL_DATE),
                 Double.parseDouble(valor),
-                DadosClientes.consultar(cliente),
+                DadosClientes.consultarCpf(cliente),
                 DadosFuncionarios.consultar(Long.parseLong(funcionario)),
                 DadosVeiculos.consultar(veiculo));
         
@@ -188,7 +188,7 @@ public class FormularioVendasController {
     
     public void atualizarCaixaClientes() {
         formulario.getjComboBoxClientes().removeAllItems();
-        DadosClientes.getClientes().forEach((cliente) -> {
+        DadosClientes.consultarTodos().forEach((cliente) -> {
             formulario.getjComboBoxClientes().addItem(cliente.getNome());
         });
     }
@@ -212,7 +212,7 @@ public class FormularioVendasController {
             return;
         
         formulario.getjTextFieldCliente()
-                .setText(DadosClientes.getClientes().get(indice).getCpf());
+                .setText(DadosClientes.consultarTodos().get(indice).getCpf());
     }
     
     public void selecionarFuncionario(int indice) {

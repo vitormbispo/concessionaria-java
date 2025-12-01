@@ -63,9 +63,11 @@ public class FormularioClientesController {
             return;
         
         Cliente novoCliente = new Cliente(nome,telefone,email,cpf,rg);
+        viewPrincipal.getArvore().getNoClientes().alterarObjeto(cliente, novoCliente);
+        
         DadosClientes.alterar(cliente, nome, telefone, email, rg, cpf);
         formulario.reiniciar();
-        viewPrincipal.getArvore().getNoClientes().alterarObjeto(cliente, novoCliente);
+        
         viewPrincipal.mudarPainelCentral("ConsultaClientes");
     }
     

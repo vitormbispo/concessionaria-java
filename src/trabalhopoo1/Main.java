@@ -1,6 +1,7 @@
 package trabalhopoo1;
 
 import java.util.Scanner;
+import trabalhopoo1.dados.BancoDados;
 import trabalhopoo1.gui.controllers.clientes.ConsultaClientesController;
 import trabalhopoo1.gui.views.MenuPrincipal;
 import trabalhopoo1.gui.views.ViewPrincipal;
@@ -27,6 +28,7 @@ import trabalhopoo1.gui.views.vendas.FormularioVendas;
  */
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
+    
     private static ViewPrincipal view;
     private static MenuPrincipal menuPrincipal;
     
@@ -57,6 +59,7 @@ public class Main {
     private static String telaAtual;
     
     public static void main(String[] args) {
+        BancoDados.iniciar();
         view = new ViewPrincipal();
         
         formClientesController = new FormularioClientesController(view);

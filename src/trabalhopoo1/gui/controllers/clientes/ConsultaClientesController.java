@@ -98,22 +98,16 @@ public class ConsultaClientesController {
         
         switch(tipoBusca) {
             case "Nome" -> {
-                for(int i = 0; i < DadosClientes.getClientes().size(); i++) {
-                    Cliente cliente = DadosClientes.getClientes().get(i);
-                    
-                    if(cliente.getNome().contains(chave))
-                        clientes.add(cliente);
-                }
+                DadosClientes.consultarNome(chave).forEach(clientes::add);
                 break;
             }
             case "CPF" -> {
-                for(int i = 0; i < DadosClientes.getClientes().size(); i++) {
-                    Cliente cliente = DadosClientes.getClientes().get(i);
-                    if(cliente.getCpf().equals(chave)) {
-                        clientes.add(cliente);
-                        break;
-                    }
-                }
+                Cliente cliente = DadosClientes.consultarCpf(chave);
+                
+                if(cliente == null)
+                    break;
+                
+                clientes.add(cliente);
                 break;
             }
         }
