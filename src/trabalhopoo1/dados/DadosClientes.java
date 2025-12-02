@@ -21,7 +21,6 @@ public class DadosClientes {
         em.getTransaction().commit();
     }
     
-    
     /**
      * Procura por todos os clientes cadastrados
      * @return Uma lista com todos os clientes.
@@ -145,6 +144,8 @@ public class DadosClientes {
             throw new EntradaInvalidaException("O campo não pode estar vazio!");
         else if(!telefone.matches("\\d+"))
             throw new EntradaInvalidaException("O telefone deve conter apenas números!");
+        else if(telefone.length() > 20)
+            throw new EntradaInvalidaException("Limite de caracteres atingido! (20)");
         else
             valido = true;
         
@@ -166,8 +167,10 @@ public class DadosClientes {
             throw new EntradaInvalidaException("O campo não pode estar vazio!");
         else if(emailExiste(email))
            throw new EntradaInvalidaException("Esse e-mail já está cadastrado!");
-        else if (!email.contains("@") || email.length() < 5)
+        else if(!email.contains("@") || email.length() < 5)
             throw new EntradaInvalidaException("E-mail inválido! (Ex.: exemplo@email)");
+        else if(email.length() > 320)
+            throw new EntradaInvalidaException("Limite de caracteres atingido! (320)");
         else
             valido = true;
         
@@ -211,6 +214,8 @@ public class DadosClientes {
         
         if(nome.isBlank())
             throw new EntradaInvalidaException("O campo não pode estar vazio!");
+        else if(nome.length() > 100)
+            throw new EntradaInvalidaException("Limite de caracteres atingido! (100)");
         else
             valido = true;
         
@@ -235,6 +240,8 @@ public class DadosClientes {
             throw new EntradaInvalidaException("Esse RG já está cadastrado!");
         else if (!rg.matches("\\d+")) 
             throw new EntradaInvalidaException("O RG deve conter apenas números!");
+        else if(rg.length() > 20)
+            throw new EntradaInvalidaException("Limite de caracteres atingido! (20)");
         else
             valido = true;
         
@@ -271,7 +278,7 @@ public class DadosClientes {
      * @return {@code true} se o email já está cadastrado.
      */
     public static boolean emailExiste(String email) {
-       Query query = em.createQuery("SELECT COUNT(c) FROM Cliente c WHERE c.rg LIKE :emailCliente");
+       Query query = em.createQuery("SELECT COUNT(c) FROM Cliente c WHERE c.email LIKE :emailCliente");
        query.setParameter("emailCliente",email);
        boolean existe = (long)query.getSingleResult() != 0;
        return existe;

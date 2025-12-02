@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import trabalhopoo1.dados.DadosClientes;
+import trabalhopoo1.dados.DadosFuncionarios;
 import trabalhopoo1.entidades.Cliente;
 import trabalhopoo1.entidades.Funcionario;
 import trabalhopoo1.entidades.Veiculo;
@@ -53,6 +54,10 @@ public class Arvore extends JTree {
     private void iniciarNos() {
         DadosClientes.consultarTodos().forEach((cliente) -> {
            noClientes.adicionarObjeto(cliente);
+        });
+        
+        DadosFuncionarios.consultarTodos().forEach((funcionario) -> {
+            noFuncionarios.adicionarObjeto(funcionario);
         });
     }
     /**

@@ -47,7 +47,7 @@ public class ConsultaFuncionariosController {
         ArrayList<ArrayList<String>> linhas = new ArrayList<>();
         funcionariosEncontrados = buscarFuncionarios(chave,tipoBusca);
         
-        if(funcionariosEncontrados.size() == 0) {
+        if(funcionariosEncontrados.isEmpty()) {
             JOptionPane.showMessageDialog(painelResultados, "Nenhum dado encontrado!", "Erro", JOptionPane.WARNING_MESSAGE);
         }
         
@@ -96,21 +96,20 @@ public class ConsultaFuncionariosController {
         
         switch(tipoBusca) {
             case "Nome" -> {
-                for(int i = 0; i < DadosFuncionarios.getFuncionarios().size(); i++) {
-                    Funcionario funcionario = DadosFuncionarios.getFuncionarios().get(i);
-                    
-                    if(funcionario.getNome().contains(chave))
-                        funcionarios.add(funcionario);
-                }
+                DadosFuncionarios.consultarNome(chave).forEach(funcionarios::add);
                 break;
             }
             case "Nº Matrícula" -> {
-                for(int i = 0; i < DadosFuncionarios.getFuncionarios().size(); i++) {
-                    Funcionario funcionario = DadosFuncionarios.getFuncionarios().get(i);
-                    if(funcionario.getNumeroMatricula() == Long.parseLong(chave)) {
-                        funcionarios.add(funcionario);
+                try {
+                    Funcionario funcionario = DadosFuncionarios.consultarMatricula(Long.parseLong(chave));
+                    
+                    if(funcionario == null)
                         break;
-                    }
+                    
+                    funcionarios.add(funcionario);
+                }
+                catch(NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "O Nº de matrícula deve ser válido!!", "Erro", JOptionPane.WARNING_MESSAGE);
                 }
                 break;
             }

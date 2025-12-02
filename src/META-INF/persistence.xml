@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>trabalhopoo1.entidades.Cliente</class>
     <class>trabalhopoo1.dados.BancoDados</class>
+    <class>trabalhopoo1.entidades.Funcionario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:data.db"/>
       <property name="javax.persistence.jdbc.user" value=""/>

@@ -24,7 +24,7 @@ public class FormularioFuncionariosController {
      * @param cargaHoraria Carga horária do funcionário
      */
     public void cadastrarFuncionario(String nome, String numeroMatricula,String qualificacao, String descFuncao, String cargaHoraria) {
-        if(!validarEntradas(nome,numeroMatricula,qualificacao,cargaHoraria))
+        if(!validarEntradas(nome,numeroMatricula,qualificacao,cargaHoraria,descFuncao))
             return;
         
         Funcionario funcionario = new Funcionario(nome,Long.parseLong(numeroMatricula),qualificacao,descFuncao,Integer.parseInt(cargaHoraria));
@@ -73,14 +73,14 @@ public class FormularioFuncionariosController {
     public boolean validarNome(String nome) {
         boolean valido = true;
         
-        if(nome.isBlank()) {
-            valido = false;
-            formulario.getjLabelNomeVal().setText("O campo não pode ser vazio!");
-            formulario.getjLabelNomeVal().setVisible(true);
-        } else {
+        try {
+            DadosFuncionarios.validarNome(nome);
             formulario.getjLabelNomeVal().setVisible(false);
+        } catch (EntradaInvalidaException e) {
+            valido = false;
+            formulario.getjLabelNomeVal().setText(e.getMessage());
+            formulario.getjLabelNomeVal().setVisible(true);
         }
-
         return valido;
     }
     
@@ -101,14 +101,29 @@ public class FormularioFuncionariosController {
     public boolean validarQualificacao(String qualificacao) {
         boolean valido = true;
         
-        if(qualificacao.isBlank()) {
+        try {
+            DadosFuncionarios.validarQualificacao(qualificacao);
+            formulario.getjLabelQualiVal().setVisible(false);
+        } catch (EntradaInvalidaException e) {
             valido = false;
-            formulario.getjLabelQualiVal().setText("O campo não pode ser vazio!");
+            formulario.getjLabelQualiVal().setText(e.getMessage());
             formulario.getjLabelQualiVal().setVisible(true);
-        } else {
-            formulario.getjLabelNomeVal().setVisible(false);
         }
-
+        return valido;
+    }
+    
+       
+    public boolean validarDescFuncao(String descFuncao) {
+        boolean valido = true;
+        
+        try {
+            DadosFuncionarios.validarDescFuncao(descFuncao);
+            formulario.getjLabelDescVal().setVisible(false);
+        } catch (EntradaInvalidaException e) {
+            valido = false;
+            formulario.getjLabelDescVal().setText(e.getMessage());
+            formulario.getjLabelDescVal().setVisible(true);
+        }
         return valido;
     }
        
@@ -126,11 +141,12 @@ public class FormularioFuncionariosController {
         return valido;
     }
     
-    public boolean validarEntradas(String nome, String matricula, String qualificacao, String carga) {
+    public boolean validarEntradas(String nome, String matricula, String qualificacao, String carga, String descFuncao) {
         return validarNome(nome) &
                validarMatricula(matricula) &
                validarQualificacao(qualificacao) &
-               validarCargaHoraria(carga);
+               validarCargaHoraria(carga) &
+               validarDescFuncao(descFuncao);
     }
     
     /**

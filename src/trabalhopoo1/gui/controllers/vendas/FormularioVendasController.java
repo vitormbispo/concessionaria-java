@@ -37,7 +37,7 @@ public class FormularioVendasController {
                 LocalDate.parse(data, DateTimeFormatter.ISO_LOCAL_DATE),
                 Double.parseDouble(valor),
                 DadosClientes.consultarCpf(cliente),
-                DadosFuncionarios.consultar(Long.parseLong(funcionario)),
+                DadosFuncionarios.consultarMatricula(Long.parseLong(funcionario)),
                 DadosVeiculos.consultar(veiculo));
                 
         
@@ -79,7 +79,7 @@ public class FormularioVendasController {
                 LocalDate.parse(data, DateTimeFormatter.ISO_LOCAL_DATE),
                 Double.parseDouble(valor),
                 DadosClientes.consultarCpf(cliente),
-                DadosFuncionarios.consultar(Long.parseLong(funcionario)),
+                DadosFuncionarios.consultarMatricula(Long.parseLong(funcionario)),
                 DadosVeiculos.consultar(veiculo));
         
         viewPrincipal.getArvore().getNoVendas().alterarObjeto(venda, novaVenda);
@@ -195,7 +195,7 @@ public class FormularioVendasController {
     
     public void atualizarCaixaFuncionarios() {
         formulario.getjComboBoxFuncionarios().removeAllItems();
-        DadosFuncionarios.getFuncionarios().forEach((funcionario) -> {
+        DadosFuncionarios.consultarTodos().forEach((funcionario) -> {
             formulario.getjComboBoxFuncionarios().addItem(funcionario.getNome());
         });
     }
@@ -217,7 +217,7 @@ public class FormularioVendasController {
     
     public void selecionarFuncionario(int indice) {
         formulario.getjTextFieldFuncionario()
-                .setText(Long.toString(DadosFuncionarios.getFuncionarios().get(indice).getNumeroMatricula()));
+                .setText(Long.toString(DadosFuncionarios.consultarTodos().get(indice).getNumeroMatricula()));
     }
     
     public void selecionarVeiculo(int indice) {

@@ -71,7 +71,6 @@ public class FormularioClientesController {
         viewPrincipal.mudarPainelCentral("ConsultaClientes");
     }
     
-    
     // Validações
     
     public boolean validarNome(String nome) {

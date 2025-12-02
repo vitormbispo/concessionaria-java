@@ -1,16 +1,40 @@
 package trabalhopoo1.entidades;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Classe para objetos do tipo Funcionario
- * @author Vitor Bispo
  */
+@Entity
+@Table (name="Funcionario")
 public class Funcionario {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
+    
+    @Column(name="nome", length=100, nullable=false)
     private String nome;
+    
+    @Column(name="numMatricula", length=20, nullable=false)
     private long numeroMatricula;
+    
+    @Column(name="qualificaçao", length=50, nullable=false)
     private String qualificacao;
+    
+    @Column(name="descFuncao", length=200, nullable=false)
     private String descFuncao;
+    
+    @Column(name="cargaHoraria", length=2, nullable=false)
     private int cargaHoraria;
 
+    public Funcionario() {
+    }
+    
     public Funcionario(String nome, long numeroMatricula, String qualificacao, String descFuncao, int cargaHoraria) {
         this.nome = nome;
         this.numeroMatricula = numeroMatricula;
@@ -23,6 +47,7 @@ public class Funcionario {
         return new Funcionario(this.nome,this.numeroMatricula,this.qualificacao,this.descFuncao,this.cargaHoraria);
     }
     
+    public long getId() { return id; }
     public String getNome() { return nome; }
     public long getNumeroMatricula() { return numeroMatricula; }
     public String getQualificacao() { return qualificacao; }
