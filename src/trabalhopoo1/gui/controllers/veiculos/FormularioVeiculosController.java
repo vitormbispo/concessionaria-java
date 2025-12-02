@@ -83,12 +83,13 @@ public class FormularioVeiculosController {
     public boolean validarModelo(String modelo) {
         boolean valido = true;
         
-        if(modelo.isBlank()) {
-            valido = false;
-            formulario.getjLabelModeloVal().setText("O campo não pode estar vazio!");
-            formulario.getjLabelModeloVal().setVisible(true);
-        } else {
+        try {
+            valido = DadosVeiculos.validarModelo(modelo);
             formulario.getjLabelModeloVal().setVisible(false);
+        } catch(EntradaInvalidaException e) {
+            valido = false;
+            formulario.getjLabelModeloVal().setText(e.getMessage());
+            formulario.getjLabelModeloVal().setVisible(true);
         }
 
         return valido;
@@ -97,26 +98,28 @@ public class FormularioVeiculosController {
     public boolean validarCor(String cor) {
         boolean valido = true;
         
-        if(cor.isBlank()) {
-            valido = false;
-            formulario.getjLabelCorVal().setText("O campo não pode estar vazio!");
-            formulario.getjLabelCorVal().setVisible(true);
-        } else {
+        try {
+            valido = DadosVeiculos.validarCor(cor);
             formulario.getjLabelCorVal().setVisible(false);
+        } catch(EntradaInvalidaException e) {
+            valido = false;
+            formulario.getjLabelCorVal().setText(e.getMessage());
+            formulario.getjLabelCorVal().setVisible(true);
         }
 
         return valido;
     }
     
-     public boolean validarMarca(String cor) {
+     public boolean validarMarca(String marca) {
         boolean valido = true;
         
-        if(cor.isBlank()) {
-            valido = false;
-            formulario.getjLabelMarcaVal().setText("O campo não pode estar vazio!");
-            formulario.getjLabelMarcaVal().setVisible(true);
-        } else {
+        try {
+            valido = DadosVeiculos.validarMarca(marca);
             formulario.getjLabelMarcaVal().setVisible(false);
+        } catch(EntradaInvalidaException e) {
+            valido = false;
+            formulario.getjLabelMarcaVal().setText(e.getMessage());
+            formulario.getjLabelMarcaVal().setVisible(true);
         }
 
         return valido;

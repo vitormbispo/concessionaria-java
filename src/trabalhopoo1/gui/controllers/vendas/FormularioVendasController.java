@@ -38,7 +38,7 @@ public class FormularioVendasController {
                 Double.parseDouble(valor),
                 DadosClientes.consultarCpf(cliente),
                 DadosFuncionarios.consultarMatricula(Long.parseLong(funcionario)),
-                DadosVeiculos.consultar(veiculo));
+                DadosVeiculos.consultarChassi(veiculo));
                 
         
         DadosVendas.cadastrar(venda);
@@ -80,7 +80,7 @@ public class FormularioVendasController {
                 Double.parseDouble(valor),
                 DadosClientes.consultarCpf(cliente),
                 DadosFuncionarios.consultarMatricula(Long.parseLong(funcionario)),
-                DadosVeiculos.consultar(veiculo));
+                DadosVeiculos.consultarChassi(veiculo));
         
         viewPrincipal.getArvore().getNoVendas().alterarObjeto(venda, novaVenda);
         DadosVendas.alterar(venda, novaVenda.getData(), novaVenda.getValor(), novaVenda.getCliente(), novaVenda.getFuncionario(), novaVenda.getVeiculo());
@@ -202,7 +202,7 @@ public class FormularioVendasController {
     
     public void atualizarCaixaVeiculos() {
         formulario.getjComboBoxVeiculos().removeAllItems();
-        DadosVeiculos.getVeiculos().forEach((veiculo) -> {
+        DadosVeiculos.consultarTodos().forEach((veiculo) -> {
             formulario.getjComboBoxVeiculos().addItem(veiculo.toString());
         });  
     }
@@ -222,7 +222,7 @@ public class FormularioVendasController {
     
     public void selecionarVeiculo(int indice) {
         formulario.getjTextFieldVeiculo()
-                .setText(DadosVeiculos.getVeiculos().get(indice).getChassi());
+                .setText(DadosVeiculos.consultarTodos().get(indice).getChassi());
     }
     
     public void setFormulario(FormularioVendas formulario) {

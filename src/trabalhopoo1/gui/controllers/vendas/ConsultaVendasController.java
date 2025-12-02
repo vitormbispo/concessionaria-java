@@ -136,7 +136,7 @@ public class ConsultaVendasController {
                 painelResultados, 
                 "Deseja remover o(s) veículo(s) selecionado(s)?", "Remover veículo(s)", 
                 JOptionPane.YES_NO_OPTION ,
-                JOptionPane.QUESTION_MESSAGE);
+                JOptionPane.WARNING_MESSAGE);
         
         if(confirmacao == JOptionPane.NO_OPTION || confirmacao == JOptionPane.CANCEL_OPTION || confirmacao == JOptionPane.CLOSED_OPTION)
             return;

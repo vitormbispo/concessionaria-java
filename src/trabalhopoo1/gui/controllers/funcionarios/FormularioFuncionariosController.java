@@ -55,6 +55,8 @@ public class FormularioFuncionariosController {
             entradasValidas = entradasValidas & validarMatricula(matricula);
         if(!funcionario.getQualificacao().equals(qualificacao))
             entradasValidas = entradasValidas & validarQualificacao(qualificacao);
+        if(!funcionario.getDescFuncao().equals(descFuncao))
+            entradasValidas = entradasValidas & validarDescFuncao(descFuncao);
         if(!Integer.toString(funcionario.getCargaHoraria()).equals(cargaHoraria))
             entradasValidas = entradasValidas & validarCargaHoraria(cargaHoraria);
         

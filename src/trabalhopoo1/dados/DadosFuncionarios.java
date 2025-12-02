@@ -29,9 +29,9 @@ public class DadosFuncionarios {
     }
     
     /**
-     * Procura por um cliente a partir do seu ID
-     * @param id ID do cliente a consultar
-     * @return O objeto do cliente consultado ou {@code null} caso não seja encontrado.
+     * Procura por um funcionário a partir do seu ID
+     * @param id ID do funcionário a consultar
+     * @return O objeto do funcionário consultado ou {@code null} caso não seja encontrado.
      */
     public static Funcionario consultarId(long id) {
         Query query = em.createQuery("SELECT f FROM Funcionario f WHERE f.id LIKE :idFuncionario");
@@ -106,7 +106,7 @@ public class DadosFuncionarios {
     }
     
     /**
-     * Remove todos os funcionários da lista.
+     * Remove todos os funcionários cadastrados.
      */
     public static void removerTodos() {
         em.getTransaction().begin();

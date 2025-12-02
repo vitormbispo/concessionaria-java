@@ -98,22 +98,20 @@ public class ConsultaVeiculosController {
         
         switch(tipoBusca) {
             case "Modelo" -> {
-                for(int i = 0; i < DadosVeiculos.getVeiculos().size(); i++) {
-                    Veiculo veiculo = DadosVeiculos.getVeiculos().get(i);
-                    
-                    if(veiculo.getModelo().toUpperCase().contains(chave.toUpperCase()))
-                        veiculos.add(veiculo);
-                }
+                DadosVeiculos.consultarModelo(chave).forEach(veiculos::add);
+                break;
+            }
+            case "Marca" -> {
+                DadosVeiculos.consultarMarca(chave).forEach(veiculos::add);
                 break;
             }
             case "Chassi" -> {
-                for(int i = 0; i < DadosVeiculos.getVeiculos().size(); i++) {
-                    Veiculo veiculo = DadosVeiculos.getVeiculos().get(i);
-                    if(veiculo.getChassi().toUpperCase().equals(chave.toUpperCase())) {
-                        veiculos.add(veiculo);
-                        break;
-                    }
-                }
+                Veiculo veiculo = DadosVeiculos.consultarChassi(chave);
+                
+                if(veiculo == null)
+                    break;
+                
+                veiculos.add(veiculo);
                 break;
             }
         }
@@ -136,7 +134,7 @@ public class ConsultaVeiculosController {
                 painelResultados, 
                 "Deseja remover o(s) veículo(s) selecionado(s)?", "Remover veículo(s)", 
                 JOptionPane.YES_NO_OPTION ,
-                JOptionPane.QUESTION_MESSAGE);
+                JOptionPane.WARNING_MESSAGE);
         
         if(confirmacao == JOptionPane.NO_OPTION || confirmacao == JOptionPane.CANCEL_OPTION || confirmacao == JOptionPane.CLOSED_OPTION)
             return;

@@ -133,7 +133,7 @@ public class ConsultaFuncionariosController {
                 painelResultados, 
                 "Deseja remover o(s) funcionário(s) selecionado(s)?", "Remover funcionário(s)", 
                 JOptionPane.YES_NO_OPTION ,
-                JOptionPane.QUESTION_MESSAGE);
+                JOptionPane.WARNING_MESSAGE);
         
         if(confirmacao == JOptionPane.NO_OPTION || confirmacao == JOptionPane.CANCEL_OPTION || confirmacao == JOptionPane.CLOSED_OPTION)
             return;

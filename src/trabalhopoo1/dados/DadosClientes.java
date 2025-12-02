@@ -110,7 +110,7 @@ public class DadosClientes {
     }
     
     /**
-     * Remove todos os clientes
+     * Remove todos os clientes cadastrados.
      */
     public static void removerTodos() {
         em.getTransaction().begin();
