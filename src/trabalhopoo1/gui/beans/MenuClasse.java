@@ -66,7 +66,7 @@ public class MenuClasse extends JPopupMenu{
                     DadosVendas.removerTodos();
                 
                 if(Main.getTelaAtual().equals("FormularioVendas")) {
-                    Main.getFormVendasController().atualizarCaixas();
+                    Main.getFormVendasController().atualizarListas();
                 }
             }
         }
@@ -94,7 +94,7 @@ public class MenuClasse extends JPopupMenu{
             if(objeto.equals("Veículos"))
                 arvore.getViewPrincipal().mudarPainelCentral("FormularioVeiculos");
             if(objeto.equals("Vendas")) {
-                Main.getFormVendasController().atualizarCaixas();
+                Main.getFormVendasController().atualizarListas();
                 arvore.getViewPrincipal().mudarPainelCentral("FormularioVendas");
             }
                 

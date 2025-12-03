@@ -1,6 +1,5 @@
 package trabalhopoo1.entidades;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
-    @Column(length=100, name="nome", nullable=false)
+    @Column(length=50, name="nome", nullable=false)
     private String nome;
     @Column(length=20, name="telefone", nullable=false)
     private String telefone;

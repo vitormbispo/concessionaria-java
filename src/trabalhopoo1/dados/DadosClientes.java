@@ -214,8 +214,8 @@ public class DadosClientes {
         
         if(nome.isBlank())
             throw new EntradaInvalidaException("O campo não pode estar vazio!");
-        else if(nome.length() > 100)
-            throw new EntradaInvalidaException("Limite de caracteres atingido! (100)");
+        else if(nome.length() > 50)
+            throw new EntradaInvalidaException("Limite de caracteres atingido! (50)");
         else
             valido = true;
         

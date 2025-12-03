@@ -6,6 +6,7 @@
     <class>trabalhopoo1.dados.BancoDados</class>
     <class>trabalhopoo1.entidades.Funcionario</class>
     <class>trabalhopoo1.entidades.Veiculo</class>
+    <class>trabalhopoo1.entidades.Venda</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:data.db"/>
       <property name="javax.persistence.jdbc.user" value=""/>

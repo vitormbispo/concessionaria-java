@@ -84,13 +84,14 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelDataVal" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelValorVal" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jLabelDataVal" min="-2" max="-2" attributes="0"/>
                                   <Component id="jComboBoxVeiculos" pref="143" max="32767" attributes="0"/>
                                   <Component id="jComboBoxFuncionarios" max="32767" attributes="0"/>
                                   <Component id="jComboBoxClientes" max="32767" attributes="0"/>
+                                  <Component id="jButtonDataHoje" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -113,48 +114,56 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace pref="68" max="32767" attributes="0"/>
               <Component id="jLabelCadastrar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="jLabelModelo" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxClientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelClienteVal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="jLabelMarca" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxFuncionarios" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelFuncionarioVal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="jLabelAno" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxVeiculos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelVeiculoVal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="jLabelCor" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jTextFieldData" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonDataHoje" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="jLabelModelo" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextFieldCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxClientes" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelClienteVal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="jLabelMarca" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextFieldFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxFuncionarios" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelFuncionarioVal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="jLabelAno" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextFieldVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxVeiculos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelVeiculoVal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="jLabelCor" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextFieldData" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelDataVal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabelDataVal" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -168,9 +177,9 @@
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButtonCadastrar" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="83" max="32767" attributes="0"/>
           </Group>
@@ -417,6 +426,20 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Inv&#xe1;lido!"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonDataHoje">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="f0" green="f0" red="f0" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Data de hoje"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDataHojeActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

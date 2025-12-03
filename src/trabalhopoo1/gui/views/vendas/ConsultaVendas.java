@@ -35,7 +35,7 @@ public class ConsultaVendas extends javax.swing.JPanel {
 
         jTextFieldBusca.setToolTipText("Insira sua consulta");
 
-        jComboBoxTipoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Funcionário" }));
+        jComboBoxTipoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Funcionário", "Veículo" }));
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {

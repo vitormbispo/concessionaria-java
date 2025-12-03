@@ -75,7 +75,7 @@ public class MenuObjeto extends JPopupMenu{
                 if(Main.getTelaAtual().equals("FormularioVendas"))
                     Main.getFormVendasController().atualizarCaixaVeiculos();
             }
-
+            
             else if(objeto instanceof Venda venda)
                 DadosVendas.remover(venda);
             
@@ -86,7 +86,7 @@ public class MenuObjeto extends JPopupMenu{
      * Handler para a opção "Editar..." do menu
      */
     private class EditarObjetoHandler implements ActionListener {
-        private Arvore arvore;
+        private final Arvore arvore;
         
         public EditarObjetoHandler(Arvore arvore) {
             this.arvore = arvore;
@@ -107,9 +107,14 @@ public class MenuObjeto extends JPopupMenu{
             else if(objeto instanceof Veiculo veiculo) {
                 Main.getFormVeiculos().ativarEdicao(veiculo);
                 arvore.getViewPrincipal().mudarPainelCentral("FormularioVeiculos");
+                System.out.println("oxi");
             }
-            else if(objeto instanceof Venda)
-                DadosVendas.remover((Venda) objeto);
+            else if(objeto instanceof Venda venda) {
+                Main.getFormVendas().ativarEdicao(venda);
+                Main.getFormVendasController().atualizarListas();
+                arvore.getViewPrincipal().mudarPainelCentral("FormularioVendas");
+            }
+                
         }
     }
 }

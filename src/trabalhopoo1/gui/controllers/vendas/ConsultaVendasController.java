@@ -31,7 +31,7 @@ public class ConsultaVendasController {
      * Aciona a tela de cadastro de veículos.
      */
     public void adicionar() {
-        Main.getFormVendasController().atualizarCaixas();
+        Main.getFormVendasController().atualizarListas();
         viewPrincipal.mudarPainelCentral("FormularioVendas");
     }
     
@@ -54,9 +54,9 @@ public class ConsultaVendasController {
         
         vendasEncontrados.forEach((venda) -> {
             ArrayList linha = new ArrayList(Arrays.asList(
-                venda.getCliente().getNome(),
-                venda.getFuncionario().getNome(),
-                venda.getVeiculo().toString(),
+                venda.getCliente().getNome() != null ? venda.getCliente().getNome() : "*Cliente excluído*",
+                venda.getFuncionario() != null ? venda.getFuncionario().getNome() : "*Funcionário excluído*",
+                venda.getVeiculo() != null ? venda.getVeiculo().toString() : "*Veículo excluído*",
                 venda.getData().toString(),
                 Double.toString(venda.getValor())
             ));
@@ -73,7 +73,7 @@ public class ConsultaVendasController {
                 int indice = Integer.parseInt(botao.getName());
                 
                 Main.getFormVendas().ativarEdicao(vendasEncontrados.get(indice));
-                Main.getFormVendasController().atualizarCaixas();
+                Main.getFormVendasController().atualizarListas();
                 Main.getConsVendas().reiniciar();
                 
                 viewPrincipal.mudarPainelCentral("FormularioVendas");
@@ -95,25 +95,17 @@ public class ConsultaVendasController {
      */
     public ArrayList<Venda> buscarVendas(String chave, String tipoBusca) {
         ArrayList<Venda> vendas = new ArrayList<>();
-        
         switch(tipoBusca) {
             case "Cliente" -> {
-                for(int i = 0; i < DadosVendas.getVendas().size(); i++) {
-                    Venda venda = DadosVendas.getVendas().get(i);
-                    
-                    if(venda.getCliente().getCpf().contains(chave))
-                        vendas.add(venda);
-                }
+                DadosVendas.consultarCliente(chave).forEach(vendas::add);
                 break;
             }
             case "Funcionário" -> {
-                for(int i = 0; i < DadosVendas.getVendas().size(); i++) {
-                    Venda venda = DadosVendas.getVendas().get(i);
-                    if(Long.toString(venda.getFuncionario().getNumeroMatricula()).equals(chave)) {
-                        vendas.add(venda);
-                        break;
-                    }
-                }
+                DadosVendas.consultarFuncionario(chave).forEach(vendas::add);
+                break;
+            }
+            case "Veículo" -> {
+                DadosVendas.consultarVeiculo(chave).forEach(vendas::add);
                 break;
             }
         }

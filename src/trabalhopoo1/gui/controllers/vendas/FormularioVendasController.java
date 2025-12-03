@@ -180,12 +180,18 @@ public class FormularioVendasController {
         viewPrincipal.mudarPainelCentral("ConsultaVendas");
     }
     
-    public void atualizarCaixas() {
+    /**
+     * Atualiza as listas de seleção de clientes, funcionários e veículos
+     */
+    public void atualizarListas() {
         atualizarCaixaClientes();
         atualizarCaixaFuncionarios();
         atualizarCaixaVeiculos();
     }
     
+    /**
+     * Atualiza a lista de seleção de clientes
+     */
     public void atualizarCaixaClientes() {
         formulario.getjComboBoxClientes().removeAllItems();
         DadosClientes.consultarTodos().forEach((cliente) -> {
@@ -193,6 +199,9 @@ public class FormularioVendasController {
         });
     }
     
+    /**
+     * Atualiza a lista de seleção de funcionários
+     */
     public void atualizarCaixaFuncionarios() {
         formulario.getjComboBoxFuncionarios().removeAllItems();
         DadosFuncionarios.consultarTodos().forEach((funcionario) -> {
@@ -200,6 +209,9 @@ public class FormularioVendasController {
         });
     }
     
+    /**
+     * Atualiza a lista de seleção de veículos
+     */
     public void atualizarCaixaVeiculos() {
         formulario.getjComboBoxVeiculos().removeAllItems();
         DadosVeiculos.consultarTodos().forEach((veiculo) -> {
@@ -223,6 +235,10 @@ public class FormularioVendasController {
     public void selecionarVeiculo(int indice) {
         formulario.getjTextFieldVeiculo()
                 .setText(DadosVeiculos.consultarTodos().get(indice).getChassi());
+    }
+    
+    public void selecionarDataAtual() {
+        formulario.getjTextFieldData().setText(LocalDate.now().toString());
     }
     
     public void setFormulario(FormularioVendas formulario) {
