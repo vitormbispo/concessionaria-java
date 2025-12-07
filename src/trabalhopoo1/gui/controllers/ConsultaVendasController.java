@@ -97,6 +97,10 @@ public class ConsultaVendasController {
     public ArrayList<Venda> buscarVendas(String chave, String tipoBusca) {
         ArrayList<Venda> vendas = new ArrayList<>();
         switch(tipoBusca) {
+            case "Todos" -> {
+                DadosVendas.consultarTodas().forEach(vendas::add);
+                break;
+            }
             case "ID" -> {
                 Venda venda = DadosVendas.consultarId(chave);
                 if(venda == null)

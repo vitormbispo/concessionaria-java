@@ -96,6 +96,10 @@ public class ConsultaFuncionariosController {
         ArrayList<Funcionario> funcionarios = new ArrayList<>();
         
         switch(tipoBusca) {
+            case "Todos" -> {
+                DadosFuncionarios.consultarTodos().forEach(funcionarios::add);
+                break;
+            }
             case "ID" -> {
                 Funcionario funcionario = DadosFuncionarios.consultarId(chave);
                 if(funcionario == null)

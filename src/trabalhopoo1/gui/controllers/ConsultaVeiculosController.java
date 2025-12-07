@@ -98,6 +98,10 @@ public class ConsultaVeiculosController {
         ArrayList<Veiculo> veiculos = new ArrayList<>();
         
         switch(tipoBusca) {
+            case "Todos" -> {
+                DadosVeiculos.consultarTodos().forEach(veiculos::add);
+                break;
+            }
             case "ID" -> {
                 Veiculo veiculo = DadosVeiculos.consultarId(chave);
                 if(veiculo == null)

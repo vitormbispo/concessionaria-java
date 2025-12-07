@@ -98,6 +98,10 @@ public class ConsultaClientesController {
         ArrayList<Cliente> clientes = new ArrayList<>();
         
         switch(tipoBusca) {
+            case "Todos" -> {
+                DadosClientes.consultarTodos().forEach(clientes::add);
+                break;
+            }
             case "ID" -> {
                 Cliente cliente = DadosClientes.consultarId(chave);
                 if(cliente == null)
