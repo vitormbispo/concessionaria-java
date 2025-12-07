@@ -97,6 +97,10 @@ public class ConsultaVendasController {
     public ArrayList<Venda> buscarVendas(String chave, String tipoBusca) {
         ArrayList<Venda> vendas = new ArrayList<>();
         switch(tipoBusca) {
+            case "Todas" -> {
+                DadosVendas.consultarTodas().forEach(vendas::add);
+                break;
+            }
             case "ID" -> {
                 Venda venda = DadosVendas.consultarId(chave);
                 if(venda == null)
@@ -154,7 +158,6 @@ public class ConsultaVendasController {
         
         lista.getSelecionados().forEach((indice) -> {
             Venda venda = vendasEncontrados.get(indice);
-            viewPrincipal.getArvore().getNoVendas().removerObjeto(venda);
             DadosVendas.remover(venda);
             
         });

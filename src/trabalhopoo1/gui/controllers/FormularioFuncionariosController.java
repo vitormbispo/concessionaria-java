@@ -32,9 +32,7 @@ public class FormularioFuncionariosController {
         DadosFuncionarios.cadastrar(funcionario);
         
         formulario.reiniciar();
-        viewPrincipal.getArvore().getNoFuncionarios().adicionarObjeto(funcionario);
         viewPrincipal.mudarPainelCentral("ConsultaFuncionarios");
-        
     }
     
     /**
@@ -66,7 +64,6 @@ public class FormularioFuncionariosController {
         Funcionario novoFuncionario = new Funcionario(nome,Long.parseLong(matricula),qualificacao,descFuncao,Integer.parseInt(cargaHoraria));
         DadosFuncionarios.alterar(funcionario, nome, Long.parseLong(matricula), qualificacao, descFuncao, Integer.parseInt(cargaHoraria));
         formulario.reiniciar();
-        viewPrincipal.getArvore().getNoFuncionarios().alterarObjeto(funcionario, novoFuncionario);
         viewPrincipal.mudarPainelCentral("ConsultaFuncionarios");
     }
     

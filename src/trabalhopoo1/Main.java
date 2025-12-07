@@ -49,8 +49,6 @@ public class Main {
     private static FormularioVendasController formVendasController;
     private static ConsultaVendasController consVendasController;
     
-    private static String telaAtual;
-    
     public static void main(String[] args) {
         BancoDados.iniciar();
         view = new ViewPrincipal();
@@ -167,13 +165,5 @@ public class Main {
 
     public static ConsultaVendasController getConsVendasController() {
         return consVendasController;
-    }
-
-    public static String getTelaAtual() {
-        return telaAtual;
-    }
-
-    public static void setTelaAtual(String telaAtual) {
-        Main.telaAtual = telaAtual;
     }
 }

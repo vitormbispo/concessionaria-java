@@ -34,9 +34,7 @@ public class FormularioVeiculosController {
         DadosVeiculos.cadastrar(veiculo);
         
         formulario.reiniciar();
-        viewPrincipal.getArvore().getNoVeiculos().adicionarObjeto(veiculo);
         viewPrincipal.mudarPainelCentral("ConsultaVeiculos");
-        
     }
     
     /**
@@ -72,7 +70,6 @@ public class FormularioVeiculosController {
             return;
         
         Veiculo novoVeiculo = new Veiculo(modelo, marca, cor, Integer.parseInt(ano), Integer.parseInt(numMarchas), Integer.parseInt(numPortas), chassi);
-        viewPrincipal.getArvore().getNoVeiculos().alterarObjeto(veiculo, novoVeiculo);
         DadosVeiculos.alterar(veiculo, modelo, marca, cor, novoVeiculo.getAno(), novoVeiculo.getNumMarchas(), novoVeiculo.getNumPortas(), chassi);
         formulario.reiniciar();
         viewPrincipal.mudarPainelCentral("ConsultaVeiculos");

@@ -98,6 +98,10 @@ public class ConsultaVeiculosController {
         ArrayList<Veiculo> veiculos = new ArrayList<>();
         
         switch(tipoBusca) {
+            case "Todos" -> {
+                DadosVeiculos.consultarTodos().forEach(veiculos::add);
+                break;
+            }
             case "ID" -> {
                 Veiculo veiculo = DadosVeiculos.consultarId(chave);
                 if(veiculo == null)
@@ -147,7 +151,6 @@ public class ConsultaVeiculosController {
         
         lista.getSelecionados().forEach((indice) -> {
             Veiculo veiculo = veiculosEncontrados.get(indice);
-            viewPrincipal.getArvore().getNoVeiculos().removerObjeto(veiculo);
             DadosVeiculos.remover(veiculo);
             
         });

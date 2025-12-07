@@ -2,7 +2,6 @@ package trabalhopoo1.gui.controllers;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import javax.swing.JTextField;
 import trabalhopoo1.dados.DadosClientes;
 import trabalhopoo1.dados.DadosFuncionarios;
 import trabalhopoo1.dados.DadosVeiculos;
@@ -44,9 +43,7 @@ public class FormularioVendasController {
         DadosVendas.cadastrar(venda);
         
         formulario.reiniciar();
-        viewPrincipal.getArvore().getNoVendas().adicionarObjeto(venda);
         viewPrincipal.mudarPainelCentral("ConsultaVendas");
-        
     }
     
     /**
@@ -82,7 +79,6 @@ public class FormularioVendasController {
                 DadosFuncionarios.consultarMatricula(Long.parseLong(funcionario)),
                 DadosVeiculos.consultarChassi(veiculo));
         
-        viewPrincipal.getArvore().getNoVendas().alterarObjeto(venda, novaVenda);
         DadosVendas.alterar(venda, novaVenda.getData(), novaVenda.getValor(), novaVenda.getCliente(), novaVenda.getFuncionario(), novaVenda.getVeiculo());
         formulario.reiniciar();
         viewPrincipal.mudarPainelCentral("ConsultaVendas");

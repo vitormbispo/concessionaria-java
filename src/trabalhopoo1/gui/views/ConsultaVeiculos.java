@@ -33,10 +33,11 @@ public class ConsultaVeiculos extends javax.swing.JPanel {
         jButtonVoltar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
         jButtonAdicionar = new javax.swing.JButton();
+        jLabelBuscarPor = new javax.swing.JLabel();
 
         jTextFieldBusca.setToolTipText("Insira sua consulta");
 
-        jComboBoxTipoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Modelo", "Marca", "Chassi", "ID" }));
+        jComboBoxTipoBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Modelo", "Marca", "Chassi", "ID" }));
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +87,8 @@ public class ConsultaVeiculos extends javax.swing.JPanel {
             }
         });
 
+        jLabelBuscarPor.setText("Buscar por:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,12 +99,20 @@ public class ConsultaVeiculos extends javax.swing.JPanel {
                     .addComponent(jPanelResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabelVeiculos)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxTipoBusca, 0, 92, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextFieldBusca)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(185, 185, 185)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelBuscarPor)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jComboBoxTipoBusca, 0, 92, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -120,7 +131,9 @@ public class ConsultaVeiculos extends javax.swing.JPanel {
                     .addComponent(jLabelVeiculos)
                     .addComponent(jButtonAdicionar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelBuscarPor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,6 +185,7 @@ public class ConsultaVeiculos extends javax.swing.JPanel {
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxTipoBusca;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelBuscarPor;
     private javax.swing.JLabel jLabelVeiculos;
     private javax.swing.JPanel jPanelResultado;
     private javax.swing.JTextField jTextFieldBusca;

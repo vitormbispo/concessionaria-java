@@ -31,9 +31,7 @@ public class FormularioClientesController {
         DadosClientes.cadastrar(cliente);
         
         formulario.reiniciar();
-        viewPrincipal.getArvore().getNoClientes().adicionarObjeto(cliente);
         viewPrincipal.mudarPainelCentral("ConsultaClientes");
-        
     }
     
     /**
@@ -63,7 +61,6 @@ public class FormularioClientesController {
             return;
         
         Cliente novoCliente = new Cliente(nome,telefone,email,cpf,rg);
-        viewPrincipal.getArvore().getNoClientes().alterarObjeto(cliente, novoCliente);
         
         DadosClientes.alterar(cliente, nome, telefone, email, rg, cpf);
         formulario.reiniciar();
@@ -161,6 +158,4 @@ public class FormularioClientesController {
     public void setFormulario(FormularioClientes formulario) {
         this.formulario = formulario;
     }
-    
-    
 }

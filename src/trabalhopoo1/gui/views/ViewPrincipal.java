@@ -1,9 +1,7 @@
 package trabalhopoo1.gui.views;
 
-import trabalhopoo1.gui.beans.Arvore;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -16,10 +14,7 @@ import trabalhopoo1.dados.BancoDados;
 public class ViewPrincipal extends JFrame{
     private final JPanel painelPrincipal;
     private final JPanel painelCentro;
-    private final JPanel painelArvore;
     private final CardLayout layoutCentral;
-    
-    private final Arvore arvore;
     
     public ViewPrincipal() {
         this.setTitle("Concessionária");
@@ -30,16 +25,10 @@ public class ViewPrincipal extends JFrame{
         painelPrincipal = new JPanel();
         painelPrincipal.setLayout(new BorderLayout());
         
-        painelArvore = new JPanel();
-        painelArvore.setLayout(new GridLayout());
-        arvore = new Arvore(this);
-        painelArvore.add(arvore);
-        
         painelCentro = new JPanel(new CardLayout());
         layoutCentral = (CardLayout) painelCentro.getLayout();
         
         painelPrincipal.add(painelCentro);
-        painelPrincipal.add(painelArvore,BorderLayout.WEST);
         
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -71,8 +60,4 @@ public class ViewPrincipal extends JFrame{
     public void mudarPainelCentral(String nome) {
         this.layoutCentral.show(painelCentro, nome);
     }
-
-    public Arvore getArvore() {
-        return this.arvore;
-    } 
 }
