@@ -2,9 +2,11 @@ package trabalhopoo1.gui.views;
 
 public class MenuPrincipal extends javax.swing.JPanel {
     
-    private ViewPrincipal viewPrincipal;
+    private final ViewPrincipal viewPrincipal;
+    
     /**
      * Creates new form MenuPrincipal
+     * @param viewPrincipal Tela principal do programa
      */
     public MenuPrincipal(ViewPrincipal viewPrincipal) {
         this.viewPrincipal = viewPrincipal;

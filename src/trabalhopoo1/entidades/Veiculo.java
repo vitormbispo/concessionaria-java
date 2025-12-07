@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Classe para objetos do tipo Veículo
+ */
 @Entity
 @Table(name="Veiculo")
 public class Veiculo {
@@ -25,7 +28,7 @@ public class Veiculo {
     private String marca;
     @Column(name="ano")
     private int ano;
-    @Column(name="chassi",length=20)
+    @Column(name="chassi",length=20, unique=true)
     private String chassi;
 
     public Veiculo() {

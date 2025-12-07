@@ -8,7 +8,7 @@ import trabalhopoo1.excecoes.EntradaInvalidaException;
 import static trabalhopoo1.dados.BancoDados.em;
 
 /**
- * Classe para armazenar e gerenciar os clientes
+ * Gerencia os dados dos clientes
  */
 public class DadosClientes {  
     /**
@@ -35,9 +35,9 @@ public class DadosClientes {
      * @param id ID do cliente a consultar
      * @return O objeto do cliente consultado ou {@code null} caso não seja encontrado.
      */
-    public static Cliente consultarId(long id) {
+    public static Cliente consultarId(String id) {
         Query query = em.createQuery("SELECT c FROM Cliente c WHERE c.id LIKE :idCliente");
-        query.setParameter("idCliente", Long.toString(id));
+        query.setParameter("idCliente", id);
         
         try {
             Cliente resultado = (Cliente) query.getSingleResult();
@@ -153,9 +153,9 @@ public class DadosClientes {
     }
     
     /** 
-     * Verifica a validade do Email baseado nos fatores: <br>
+     * Verifica a validade do e-mail baseado nos fatores: <br>
      *  - Não pode ser vazio <br>
-     *  - Deve conter um @; <br>
+     *  - Deve conter um @ <br>
      *  - O Email não pode estar cadastrado.
      * @param email Email a validar
      * @return {@code true} se o email for válido.
@@ -192,7 +192,7 @@ public class DadosClientes {
         if(cpf.isBlank())
             throw new EntradaInvalidaException("O campo não pode estar vazio!");
         else if(cpf.length() != 11)
-            throw new EntradaInvalidaException("Tamanho do CPF incorreto!");
+            throw new EntradaInvalidaException("Tamanho do CPF incorreto! (11)");
         else if (!cpf.matches("\\d+"))
             throw new EntradaInvalidaException("Deve conter apenas números!");
         else if (cpfExiste(cpf))

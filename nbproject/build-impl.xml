@@ -1768,4 +1768,13 @@ is divided into following sections:
             </propertyset>
         </ant>
     </target>
+    <target name="fat-jar" depends="compile">
+        <jar destfile="dist/MeuProjeto-fat.jar" compress="true">
+            <fileset dir="build/classes"/>
+            <zipgroupfileset dir="lib" includes="*.jar"/>
+            <manifest>
+                <attribute name="Main-Class" value="trabalhopoo1.Main"/>
+            </manifest>
+        </jar>
+    </target>
 </project>

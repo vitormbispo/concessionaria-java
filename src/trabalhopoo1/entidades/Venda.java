@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Classe para objetos do tipo Venda
+ */
 @Entity
 @Table(name="Venda")
 public class Venda {

@@ -20,7 +20,7 @@ public class Funcionario {
     @Column(name="nome", length=100, nullable=false)
     private String nome;
     
-    @Column(name="numMatricula", length=20, nullable=false)
+    @Column(name="numMatricula", length=20, nullable=false, unique=true)
     private long numeroMatricula;
     
     @Column(name="qualificaçao", length=50, nullable=false)
@@ -68,6 +68,6 @@ public class Funcionario {
     @Override
     public boolean equals(Object obj) {
         Funcionario outro = (Funcionario) obj;
-        return this.numeroMatricula == outro.numeroMatricula;
+        return this.numeroMatricula == outro.getNumeroMatricula();
     }
 }

@@ -22,7 +22,7 @@ public class NoClasse<T> extends DefaultMutableTreeNode{
      * @param objeto Objeto a adicionar
      */
     public void adicionarObjeto(T objeto) {
-        NoObjeto no = new NoObjeto<T>(objeto,this);
+        NoObjeto<T> no = new NoObjeto(objeto,this);
         this.add(no);
         modelo.reload(raiz);
     }

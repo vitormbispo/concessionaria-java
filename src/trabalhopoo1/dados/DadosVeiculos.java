@@ -33,9 +33,9 @@ public class DadosVeiculos {
      * @param id ID do veículo a consultar
      * @return O objeto do veículo consultado ou {@code null} caso não seja encontrado.
      */
-    public static Veiculo consultarId(long id) {
+    public static Veiculo consultarId(String id) {
         Query query = em.createQuery("SELECT v FROM Veiculo v WHERE v.id LIKE :idVeiculo");
-        query.setParameter("idVeiculo", Long.toString(id));
+        query.setParameter("idVeiculo", id);
         
         try {
             Veiculo resultado = (Veiculo) query.getSingleResult();

@@ -19,7 +19,6 @@ import trabalhopoo1.gui.views.ViewPrincipal;
 /**
  * Arvore que exibe registros de clientes, funcionários, veículos e vendas da concessionária. <br>
  * Suporta menus de contexto com o botão direito do mouse.
- * @author vitorbispo
  */
 public class Arvore extends JTree {
     private final DefaultTreeModel modelo;
@@ -53,6 +52,9 @@ public class Arvore extends JTree {
         configurarAcoes();
     }
     
+    /**
+     * Cria os nós iniciais
+     */
     private void iniciarNos() {
         DadosClientes.consultarTodos().forEach((cliente) -> {
            noClientes.adicionarObjeto(cliente);

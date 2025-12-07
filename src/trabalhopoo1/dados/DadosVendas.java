@@ -7,6 +7,7 @@ import trabalhopoo1.entidades.Venda;
 import trabalhopoo1.entidades.Veiculo;
 import trabalhopoo1.entidades.Cliente;
 import java.util.List;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import static trabalhopoo1.dados.BancoDados.em;
 import trabalhopoo1.excecoes.EntradaInvalidaException;
@@ -33,13 +34,41 @@ public class DadosVendas {
     }
     
     /**
+     * Consulta pela venda com determinado ID
+     * @param id ID da venda
+     * @return Venda com o ID
+     */
+    public static Venda consultarId(String id) {
+        Query query = em.createQuery("SELECT v from Venda v WHERE v.id LIKE :idVenda");
+        query.setParameter("idVenda", id);
+        try {
+            Venda resultado = (Venda) query.getSingleResult();
+            return resultado;
+        } catch(NoResultException e) {
+            return null;
+        }
+        
+    }
+    /**
      * Consulta por vendas através do CPF do cliente
      * @param cpfCliente CPF do cliente
      * @return Lista com as vendas encontradas
      */
-    public static List<Venda> consultarCliente(String cpfCliente) {
-        Query query = em.createQuery("SELECT v from Venda v WHERE v.cliente.cpf LIKE :cpfCliente");
+    public static List<Venda> consultarCPF(String cpfCliente) {
+        Query query = em.createQuery("SELECT v from Venda v WHERE v.cliente.cpf = :cpfCliente");
         query.setParameter("cpfCliente", cpfCliente);
+        List<Venda> resultado = query.getResultList();
+        return resultado;
+    }
+    
+    /**
+     * Consulta por vendas através do nome do cliente
+     * @param nome Nome do cliente
+     * @return Lista com as vendas encontradas
+     */
+    public static List<Venda> consultarNomeCliente(String nome) {
+        Query query = em.createQuery("SELECT v from Venda v WHERE v.cliente.nome LIKE :nomeCliente");
+        query.setParameter("nomeCliente", "%"+nome+"%");
         List<Venda> resultado = query.getResultList();
         return resultado;
     }
@@ -49,9 +78,20 @@ public class DadosVendas {
      * @param numMatricula Nº de matrícula do funcionário
      * @return Lista com as vendas encontradas
      */
-    public static List<Venda> consultarFuncionario(String numMatricula) {
-        Query query = em.createQuery("SELECT v from Venda v WHERE v.funcionario.numeroMatricula = :cpfCliente");
-        query.setParameter("cpfCliente", numMatricula);
+    public static List<Venda> consultarNMatricula(String numMatricula) {
+        Query query = em.createQuery("SELECT v from Venda v WHERE v.funcionario.numeroMatricula LIKE :numMatricula");
+        query.setParameter("numMatricula", numMatricula);
+        return query.getResultList();
+    }
+    
+    /**
+     * Consulta por vendas através do nome do funcionário
+     * @param nome Nome do funcionário
+     * @return Lista com as vendas encontradas
+     */
+    public static List<Venda> consultarNomeFuncionario(String nome) {
+        Query query = em.createQuery("SELECT v from Venda v WHERE v.funcionario.nome LIKE :nomeFuncionario");
+        query.setParameter("nomeFuncionario", "%"+nome+"%");
         return query.getResultList();
     }
     
@@ -60,9 +100,20 @@ public class DadosVendas {
      * @param chassi Chassi do veículo
      * @return Lista com as vendas encontradas
      */
-    public static List<Venda> consultarVeiculo(String chassi) {
+    public static List<Venda> consultarChassi(String chassi) {
         Query query = em.createQuery("SELECT v from Venda v WHERE v.veiculo.chassi = :chassiVeiculo");
         query.setParameter("chassiVeiculo", chassi);
+        return query.getResultList();
+    }
+    
+    /**
+     * Consulta por vendas através do modelo do veículo
+     * @param modelo Modelo do veículo
+     * @return Lista com as vendas encontradas
+     */
+    public static List<Venda> consultarModeloVeiculo(String modelo) {
+        Query query = em.createQuery("SELECT v from Venda v WHERE v.veiculo.modelo LIKE :modeloVeiculo");
+        query.setParameter("modeloVeiculo", "%"+modelo+"%");
         return query.getResultList();
     }
     
@@ -118,6 +169,13 @@ public class DadosVendas {
     
     // Validações
     
+    /**
+     * Valida uma entrada de CPF de cliente de acordo com os seguintes fatores: <br>
+     *    - Não pode ser vazia <br>
+     *    - Cliente com o CPF deve existir
+     * @param cpf CPF
+     * @return {@code true} se a entrada for válida
+     */
     public static boolean validarCliente(String cpf) {
         boolean valido = false;
         
@@ -131,7 +189,13 @@ public class DadosVendas {
         return valido;
     }
     
-    
+    /**
+     * Valida uma entrada de número de matrícula de funcionário de acordo com os seguintes fatores: <br>
+     *    - Não pode ser vazia <br>
+     *    - Funcionárico com o Nº de matrícula deve existir
+     * @param numMatricula Nº de matrícula
+     * @return {@code true} se a entrada for válida
+     */
     public static boolean validarFuncionario(String numMatricula) {
         boolean valido = false;
         
@@ -150,6 +214,13 @@ public class DadosVendas {
         return valido;
     }
     
+    /**
+     * Valida uma entrada de chassi de veículo de acordo com os seguintes fatores: <br>
+     *    - Não pode ser vazia <br>
+     *    - Veículo com o chassi deve existir
+     * @param chassi Chassi
+     * @return {@code true} se a entrada for válida
+     */
     public static boolean validarVeiculo(String chassi) {
         boolean valido = false;
         
@@ -163,6 +234,13 @@ public class DadosVendas {
         return valido;
     }
     
+    /**
+     * Valida uma entrada de data de acordo com os seguintes fatores: <br>
+     *    - Não pode ser vazia <br>
+     *    - Deve seguir o formato AAAA-MM-DD
+     * @param data Data
+     * @return {@code true} se a entrada for válida
+     */
     public static boolean validarData(String data) {
         boolean valido = false;
         
@@ -178,6 +256,13 @@ public class DadosVendas {
         return valido;
     }
     
+    /**
+     * Valida uma entrada de valor de acordo com os seguintes fatores: <br>
+     *    - Não pode ser vazia <br>
+     *    - Deve ser número válido
+     * @param valor Valor
+     * @return {@code true} se a entrada for válida
+     */
     public static boolean validarValor(String valor) {
         boolean valido = false;
         

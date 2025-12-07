@@ -33,9 +33,9 @@ public class DadosFuncionarios {
      * @param id ID do funcionário a consultar
      * @return O objeto do funcionário consultado ou {@code null} caso não seja encontrado.
      */
-    public static Funcionario consultarId(long id) {
+    public static Funcionario consultarId(String id) {
         Query query = em.createQuery("SELECT f FROM Funcionario f WHERE f.id LIKE :idFuncionario");
-        query.setParameter("idFuncionario", Long.toString(id));
+        query.setParameter("idFuncionario", id);
         
         try {
             Funcionario resultado = (Funcionario) query.getSingleResult();

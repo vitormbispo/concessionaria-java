@@ -1,17 +1,29 @@
 package trabalhopoo1.dados;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
+/**
+ * Armazena os objetos de gerenciamento de entidades do banco de dados.
+ */
 public class BancoDados {
     protected static EntityManagerFactory emf;
     protected static EntityManager em;
     
+    /**
+     * Inicia os gerenciadores de entidade
+     */
     public static void iniciar() {
         emf = Persistence.createEntityManagerFactory("TrabalhoPOO1PU");
         em = emf.createEntityManager();
+    }
+    
+    /**
+     * Libera os recursos dos gerenciadores de entidade
+     */
+    public static void encerrar() {
+        em.close();
+        emf.close();
     }
 }

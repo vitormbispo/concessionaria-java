@@ -20,17 +20,16 @@ public class Cliente {
     private String nome;
     @Column(length=20, name="telefone", nullable=false)
     private String telefone;
-    @Column(length=320, name="email", nullable=false)
+    @Column(length=320, name="email", nullable=false, unique=true)
     private String email;
-    @Column(length=20, name="cpf", nullable=false)
+    @Column(length=20, name="cpf", nullable=false, unique=true)
     private String cpf;
-    @Column(length=20, name="rg", nullable=false)
+    @Column(length=20, name="rg", nullable=false, unique=true)
     private String rg;
 
     public Cliente() {
     }
 
-    
     public Cliente(String nome, String telefone, String email, String cpf,String rg) {
         this.nome = nome;
         this.telefone = telefone;
@@ -66,6 +65,6 @@ public class Cliente {
     @Override
     public boolean equals(Object obj) {
         Cliente outro = (Cliente) obj;
-        return this.id == outro.getId();
+        return this.cpf.equals(outro.getCpf());
     }
 }

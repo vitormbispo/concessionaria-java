@@ -4,9 +4,11 @@ import trabalhopoo1.gui.beans.Arvore;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import trabalhopoo1.Main;
+import trabalhopoo1.dados.BancoDados;
 
 /**
  * Janela princiapl do programa
@@ -39,6 +41,14 @@ public class ViewPrincipal extends JFrame{
         painelPrincipal.add(painelCentro);
         painelPrincipal.add(painelArvore,BorderLayout.WEST);
         
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                BancoDados.encerrar();
+                System.exit(0);
+            }
+        });
+        
         this.getContentPane().add(painelPrincipal);
         this.setVisible(true);
     }
@@ -60,7 +70,6 @@ public class ViewPrincipal extends JFrame{
      */
     public void mudarPainelCentral(String nome) {
         this.layoutCentral.show(painelCentro, nome);
-        Main.setTelaAtual(nome);
     }
 
     public Arvore getArvore() {
