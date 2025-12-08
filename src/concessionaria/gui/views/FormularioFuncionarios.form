@@ -26,48 +26,48 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace pref="39" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabelNome" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                          <Component id="jLabelMatricula" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                          <Component id="jLabelQualificacao" min="-2" pref="101" max="-2" attributes="0"/>
-                          <Component id="jLabelFuncao" max="32767" attributes="0"/>
-                          <Component id="jButtonCancelar" min="-2" pref="116" max="-2" attributes="0"/>
-                          <Component id="jLabelCarga" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jButtonCadastrar" min="-2" pref="122" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextFieldNome" min="-2" pref="128" max="-2" attributes="0"/>
-                              <Component id="jTextFieldMatricula" min="-2" pref="128" max="-2" attributes="0"/>
-                              <Component id="jTextFieldQuali" min="-2" pref="128" max="-2" attributes="0"/>
-                              <Component id="jTextFieldDesc" min="-2" pref="128" max="-2" attributes="0"/>
-                              <Component id="jTextFieldCarga" min="-2" pref="128" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelMatriculaVal" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelQualiVal" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelDescVal" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelCargaVal" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelNomeVal" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="jLabelCadastrar" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jLabelNome" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                  <Component id="jLabelMatricula" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Component id="jLabelQualificacao" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="jLabelFuncao" max="32767" attributes="0"/>
+                  <Component id="jButtonCancelar" min="-2" pref="116" max="-2" attributes="0"/>
+                  <Component id="jLabelCarga" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jButtonCadastrar" min="-2" pref="122" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jTextFieldNome" min="-2" pref="128" max="-2" attributes="0"/>
+                      <Component id="jTextFieldMatricula" min="-2" pref="128" max="-2" attributes="0"/>
+                      <Component id="jTextFieldQuali" min="-2" pref="128" max="-2" attributes="0"/>
+                      <Component id="jTextFieldDesc" min="-2" pref="128" max="-2" attributes="0"/>
+                      <Component id="jTextFieldCarga" min="-2" pref="128" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabelMatriculaVal" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelQualiVal" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelDescVal" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelCargaVal" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelNomeVal" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabelCadastrar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="66" max="32767" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
               <Component id="jLabelCadastrar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
